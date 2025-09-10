@@ -1,6 +1,7 @@
 package com.example.pizzar11;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -16,11 +17,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import android.view.MenuItem;
+import androidx.annotation.NonNull;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+     setContentView(R.layout.activity_main);
 
         textViewBranch = findViewById(R.id.textViewBranch);
 
@@ -56,8 +63,36 @@ public class MainActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
+      //this is for to the hanlde the nav bar
+        // BottomNavigationView setup
+        BottomNavigationView bottomNav = findViewById(R.id.bottomNavigationView);
+        bottomNav.setOnItemSelectedListener(item -> {
+            int id = item.getItemId();
+            if (id == R.id.nav_home) {
+                // Already on Home
+                return true;
+            } else if (id == R.id.nav_cart) {
+                startActivity(new Intent(MainActivity.this, CartActivity.class));
+                return true;
+            } else if (id == R.id.nav_location) {
+                startActivity(new Intent(MainActivity.this, LocationActivity.class));
+                return true;
+            } else if (id == R.id.nav_profile) {
+                startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+                return true;
+            }
+            return false;
+        });
+
+
         getUserLocation();
+
+
+
+
     }
+
+
 
     private void getUserLocation() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -77,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
+
 
     private String getNearestBranch(Location userLocation){
         Location colombo = new Location("");
