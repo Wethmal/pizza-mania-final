@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/slapsh_bg"
+    android:orientation="vertical">
+
+    <!-- You can add additional elements like loading spinner, app version, etc. -->
+
+    <!-- Optional: Loading indicator at bottom -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="80dp"
+        android:indeterminateTint="#FFFFFF"
+        android:visibility="visible" />
+
+    <!-- Optional: App version text -->
+    <TextView
+        android:id="@+id/tvVersion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/progressBar"
+        android:layout_marginBottom="20dp"
+        android:text="v1.0.0"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        android:alpha="0.7" />
+
+</RelativeLayout>
