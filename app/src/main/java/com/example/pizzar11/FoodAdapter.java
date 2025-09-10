@@ -35,7 +35,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
     public void onBindViewHolder(@NonNull FoodViewHolder holder, int position) {
         Food food = foodList.get(position);
         holder.tvFoodName.setText(food.getName());
-        holder.tvFoodPrice.setText("$" + food.getPrice());
+        holder.tvFoodPrice.setText("Rs" + food.getPrice());
         // Use Glide or Picasso to load image
         Glide.with(context).load(food.getImage()).into(holder.imgFood);
     }
