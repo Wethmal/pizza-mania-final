@@ -63,22 +63,20 @@ public class MainActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
-      //this is for to the hanlde the nav bar
-        // BottomNavigationView setup
         BottomNavigationView bottomNav = findViewById(R.id.bottomNavigationView);
         bottomNav.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
             if (id == R.id.nav_home) {
-                // Already on Home
+                startActivity(new Intent(this, MainActivity.class));
                 return true;
             } else if (id == R.id.nav_cart) {
-                startActivity(new Intent(MainActivity.this, CartActivity.class));
+                startActivity(new Intent(this, CartActivity.class));
                 return true;
             } else if (id == R.id.nav_location) {
-                startActivity(new Intent(MainActivity.this, LocationActivity.class));
+                startActivity(new Intent(this, LocationActivity.class));
                 return true;
             } else if (id == R.id.nav_profile) {
-                startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+                startActivity(new Intent(this, ProfileActivity.class));
                 return true;
             }
             return false;

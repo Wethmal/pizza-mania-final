@@ -35,9 +35,18 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
     public void onBindViewHolder(@NonNull FoodViewHolder holder, int position) {
         Food food = foodList.get(position);
         holder.tvFoodName.setText(food.getName());
-        holder.tvFoodPrice.setText("Rs" + food.getPrice());
-        // Use Glide or Picasso to load image
-        Glide.with(context).load(food.getImage()).into(holder.imgFood);
+        holder.tvFoodPrice.setText("Rs " + food.getPrice());
+
+        Glide.with(context)
+                .load(food.getImage())
+                .placeholder(R.drawable.logo) // optional placeholder
+                .into(holder.imgFood);
+
+        holder.btnAddToCart.setOnClickListener(v -> {
+            CartDatabaseHelper db = new CartDatabaseHelper(context);
+            db.addToCart(food.getName(), (double) food.getPrice(), food.getImage(), 1);
+        });
+
     }
 
     @Override
@@ -46,7 +55,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
     }
 
     public static class FoodViewHolder extends RecyclerView.ViewHolder {
-        ImageView imgFood;
+        ImageView imgFood, btnAddToCart; // btnAddToCart is an ImageView
         TextView tvFoodName, tvFoodPrice;
 
         public FoodViewHolder(@NonNull View itemView) {
@@ -54,6 +63,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
             imgFood = itemView.findViewById(R.id.imgFood);
             tvFoodName = itemView.findViewById(R.id.tvFoodName);
             tvFoodPrice = itemView.findViewById(R.id.tvFoodPrice);
+            btnAddToCart = itemView.findViewById(R.id.btnAddToCart); // ImageView
         }
     }
 }
