@@ -195,7 +195,7 @@
                     android:layout_height="24dp"
                     android:layout_marginEnd="12dp"
                     android:src="@drawable/location"
-                    android:tint="#E53935" />
+                    android:backgroundTint="@color/cheese_yellow" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -256,6 +256,7 @@
             app:cardElevation="6dp"
             android:foreground="?android:attr/selectableItemBackground">
 
+
             <Button
                 android:id="@+id/btn_cancel"
                 android:layout_width="match_parent"
@@ -283,13 +284,13 @@
                 android:id="@+id/btn_done"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/red_button_background"
+                android:background="@color/cheese_yellow"
                 android:text="Confirm Location"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:textAllCaps="false"
-                style="?android:attr/borderlessButtonStyle" />
+                style="?android:attr/borderlessButtonStyle"/>
 
         </androidx.cardview.widget.CardView>
 

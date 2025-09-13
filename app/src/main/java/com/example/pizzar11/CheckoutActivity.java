@@ -84,7 +84,8 @@ public class CheckoutActivity extends AppCompatActivity {
         // Place order
         btnPlaceOrder.setOnClickListener(v -> {
             if(rbMastercard.isChecked()){
-                Toast.makeText(this, "Payment gateway coming soon!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(CheckoutActivity.this, PaymentActivity.class);
+                startActivityForResult(intent, 2001);
             } else if(rbPaypal.isChecked()){
                 placeOrderCOD();
             } else {
@@ -93,14 +94,22 @@ public class CheckoutActivity extends AppCompatActivity {
         });
     }
 
-    private void calculateTotal(){
-        double total = 0;
-        for(CartItem item: cartList){
-            total += item.getPrice() * item.getQuantity();
+    private void calculateTotal() {
+        double cartTotal = 0;
+        for (CartItem item : cartList) {
+            cartTotal += item.getPrice() * item.getQuantity();
         }
-        totalPayment = total;
-        tvTotalPayment.setText("IDR " + totalPayment);
+
+        // same as CartActivity
+        double tax = cartTotal * 0.18;   // 18% tax
+        double delivery = 150;           // fixed
+        double subtotal = cartTotal + tax + delivery;
+
+        // update UI
+        totalPayment = subtotal;
+        tvTotalPayment.setText("LKR " + String.format("%.2f", subtotal));
     }
+
 
     private void placeOrderCOD(){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
