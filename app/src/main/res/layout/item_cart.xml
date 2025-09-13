@@ -79,22 +79,8 @@
                 android:orientation="horizontal"
                 android:layout_marginBottom="12dp">
 
-                <!-- Cheese Tag -->
-                <TextView
-                    android:id="@+id/tv_cheese_tag"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Extra Cheese"
-                    android:background="@drawable/choice_tag_background"
-                    android:textColor="#E53935"
-                    android:textSize="12sp"
-                    android:paddingStart="8dp"
-                    android:paddingEnd="8dp"
-                    android:paddingTop="4dp"
-                    android:paddingBottom="4dp"
-                    android:layout_marginEnd="8dp" />
 
-                <!-- Patty Tag -->
+
 
             </LinearLayout>
 

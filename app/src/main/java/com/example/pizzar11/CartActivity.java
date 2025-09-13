@@ -34,7 +34,8 @@ public class CartActivity extends AppCompatActivity {
         db = new CartDatabaseHelper(this);
         cartList = db.getAllCartItems();
 
-        adapter = new CartAdapter(this, cartList);
+        adapter = new CartAdapter(this, cartList, this::calculateTotals);
+
         recyclerCart.setLayoutManager(new LinearLayoutManager(this));
         recyclerCart.setAdapter(adapter);
 
@@ -62,18 +63,23 @@ public class CartActivity extends AppCompatActivity {
 
     // Call this after any change in cart
     private void calculateTotals() {
-        double total = 0;
-        for(CartItem item : cartList){
-            total += item.getPrice() * item.getQuantity();
+        cartList.clear();
+        cartList.addAll(db.getAllCartItems());
+        adapter.notifyDataSetChanged();
+
+        double cartTotal = 0;
+        for (CartItem item : cartList) {
+            cartTotal += item.getPrice() * item.getQuantity();
         }
 
-        double tax = total * TAX_RATE;
-        double subtotal = total + tax + DELIVERY;
+        double tax = cartTotal * 0.18;
+        double delivery = 150; // LKR fixed
+        double subtotal = cartTotal + tax + delivery;
 
-        tvCartTotal.setText("Rs " + total);
-        tvTax.setText("Rs " + tax);
-        tvDelivery.setText("Rs " + DELIVERY);
-        tvSubtotal.setText("Rs " + subtotal);
+        tvCartTotal.setText(String.format("Rs %.2f", cartTotal));
+        tvTax.setText(String.format("Rs %.2f", tax));
+        tvDelivery.setText(String.format("Rs %.2f", delivery));
+        tvSubtotal.setText(String.format("Rs %.2f", subtotal));
     }
 
 

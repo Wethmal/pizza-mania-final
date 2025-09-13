@@ -16,9 +16,16 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     private Context context;
     private List<CartItem> cartList;
 
-    public CartAdapter(Context context, List<CartItem> cartList){
+    private CartDatabaseHelper dbHelper;
+
+    private Runnable onCartUpdated;
+
+    public CartAdapter(Context context, List<CartItem> cartList,Runnable onCartUpdated){
         this.context = context;
         this.cartList = cartList;
+        this.dbHelper = new CartDatabaseHelper(context);
+
+        this.onCartUpdated = onCartUpdated;
     }
 
     @NonNull
@@ -31,15 +38,49 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     @Override
     public void onBindViewHolder(@NonNull CartViewHolder holder, int position) {
         CartItem item = cartList.get(position);
+
         holder.tvName.setText(item.getName());
         holder.tvPrice.setText("Rs " + item.getPrice());
         holder.tvQuantity.setText("x" + item.getQuantity());
+
 
         // Load image into the ImageView
         Glide.with(context)
                 .load(item.getImageUrl()) // URL from CartItem
                 .placeholder(R.drawable.logo) // optional placeholder
                 .into(holder.ivItemImage);
+
+
+        CartDatabaseHelper db = new CartDatabaseHelper(context);
+
+        // ➖ Decrease quantity
+        holder.btnDecrease.setOnClickListener(v -> {
+            int qty = item.getQuantity();
+            if (qty > 1) {
+                item.setQuantity(qty - 1);
+                dbHelper.updateQuantity(item.getName(), item.getQuantity());
+                notifyItemChanged(position);
+                if (onCartUpdated != null) onCartUpdated.run();
+            }
+        });
+
+// ➕ Increase quantity
+        holder.btnIncrease.setOnClickListener(v -> {
+            item.setQuantity(item.getQuantity() + 1);
+            dbHelper.updateQuantity(item.getName(), item.getQuantity());
+            notifyItemChanged(position);
+            if (onCartUpdated != null) onCartUpdated.run();
+        });
+
+// ❌ Remove item
+        holder.btnRemove.setOnClickListener(v -> {
+            dbHelper.removeItem(item.getName());
+            cartList.remove(position);
+            notifyItemRemoved(position);
+            notifyItemRangeChanged(position, cartList.size());
+            if (onCartUpdated != null) onCartUpdated.run();
+        });
+
     }
 
     @Override
@@ -49,7 +90,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
     public static class CartViewHolder extends RecyclerView.ViewHolder {
         TextView tvName, tvPrice, tvQuantity;
-        ImageView ivItemImage;
+        ImageView ivItemImage,btnDecrease, btnIncrease, btnRemove;
 
         public CartViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -57,6 +98,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             tvPrice = itemView.findViewById(R.id.tvItemPrice);
             tvQuantity = itemView.findViewById(R.id.tvItemQty);
             ivItemImage = itemView.findViewById(R.id.iv_item_image); // your ImageView in item_cart.xml
+            btnDecrease = itemView.findViewById(R.id.btn_decrease_quantity);
+            btnIncrease = itemView.findViewById(R.id.btn_increase_quantity);
+            btnRemove = itemView.findViewById(R.id.btn_remove_item);
         }
     }
 }

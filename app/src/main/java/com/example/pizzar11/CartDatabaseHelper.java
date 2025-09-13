@@ -89,4 +89,19 @@ public class CartDatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_CART, null, null);
     }
+
+    // Update quantity
+    public void updateQuantity(String name, int newQty) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COL_QUANTITY, newQty);
+        db.update(TABLE_CART, cv, "name=?", new String[]{name});
+    }
+
+    // Remove item
+    public void removeItem(String name) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_CART, "name=?", new String[]{name});
+    }
+
 }
