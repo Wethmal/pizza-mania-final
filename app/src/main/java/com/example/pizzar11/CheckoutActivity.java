@@ -1,7 +1,10 @@
 package com.example.pizzar11;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -36,6 +39,7 @@ public class CheckoutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
 
+        // Views
         tvAddressLine1 = findViewById(R.id.tv_address_line1);
         tvAddressLine2 = findViewById(R.id.tv_address_line2);
         tvAddressLine3 = findViewById(R.id.tv_address_line3);
@@ -67,16 +71,24 @@ public class CheckoutActivity extends AppCompatActivity {
         cartList = dbHelper.getAllCartItems();
         calculateTotal();
 
+        // Open map to pick location
         btnEditAddress.setOnClickListener(v -> {
             Intent intent = new Intent(CheckoutActivity.this, PickLocationActivity.class);
             startActivityForResult(intent, 1001);
         });
 
+        // Payment method handling
+        rbMastercard.setOnClickListener(v -> rbPaypal.setChecked(false));
+        rbPaypal.setOnClickListener(v -> rbMastercard.setChecked(false));
+
+        // Place order
         btnPlaceOrder.setOnClickListener(v -> {
             if(rbMastercard.isChecked()){
                 Toast.makeText(this, "Payment gateway coming soon!", Toast.LENGTH_SHORT).show();
             } else if(rbPaypal.isChecked()){
                 placeOrderCOD();
+            } else {
+                Toast.makeText(this, "Please select a payment method", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -116,7 +128,28 @@ public class CheckoutActivity extends AppCompatActivity {
         if(requestCode == 1001 && resultCode == RESULT_OK){
             double lat = data.getDoubleExtra("lat",0);
             double lng = data.getDoubleExtra("lng",0);
-            tvAddressLine1.setText("Lat: "+lat+", Lng: "+lng);
+
+            // Reverse geocode
+            try {
+                Geocoder geocoder = new Geocoder(this);
+                List<Address> addresses = geocoder.getFromLocation(lat, lng, 1);
+                if(addresses != null && addresses.size() > 0){
+                    Address address = addresses.get(0);
+
+                    tvAddressLine1.setText(address.getFeatureName());
+                    tvAddressLine2.setText(address.getThoroughfare());
+                    tvAddressLine3.setText(address.getLocality());
+                    tvAddressLine4.setText(address.getAdminArea() + ", " + address.getCountryName());
+                } else {
+                    tvAddressLine1.setText("Lat: "+lat);
+                    tvAddressLine2.setText("Lng: "+lng);
+                    tvAddressLine3.setText("");
+                    tvAddressLine4.setText("");
+                }
+            } catch (Exception e){
+                e.printStackTrace();
+                Toast.makeText(this, "Failed to get address!", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }
