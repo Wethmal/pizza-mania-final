@@ -15,6 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Pizzar11">
         <activity
+            android:name=".OrderHistoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DriverMapActivity"
+            android:exported="false" />
+        <activity
             android:name=".ResOrder"
             android:exported="false" />
         <activity android:name=".OrderDetailsActivity" />

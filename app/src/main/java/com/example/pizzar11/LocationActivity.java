@@ -1,59 +1,76 @@
 package com.example.pizzar11;
 
-import androidx.fragment.app.FragmentActivity;
 import android.os.Bundle;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.firebase.firestore.DocumentReference;
+import android.os.Handler;
+import android.util.Log;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class LocationActivity extends FragmentActivity implements OnMapReadyCallback {
+public class LocationActivity extends AppCompatActivity {
 
-    private GoogleMap mMap;
-    private Marker deliveryMarker;
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
-    String deliveryBoyId = "delivery123"; // 🔹 Example, assign dynamically later
+    private FirebaseFirestore db;
+    private String orderId;
+    private Handler handler = new Handler();
+    private Runnable updateRunnable;
+    private TextView tvStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location);
 
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        if (mapFragment != null) {
-            mapFragment.getMapAsync(this);
+        // ✅ Get orderId safely
+        orderId = getIntent().getStringExtra("orderId");
+        if (orderId == null || orderId.trim().isEmpty()) {
+            Toast.makeText(this, "Order not found!", Toast.LENGTH_SHORT).show();
+            finish();
+            return;
         }
+
+        db = FirebaseFirestore.getInstance();
+        tvStatus = findViewById(R.id.tvStatus);
+
+        startLiveTracking();
+    }
+
+    private void startLiveTracking() {
+        updateRunnable = new Runnable() {
+            @Override
+            public void run() {
+                if (orderId == null) return;
+
+                db.collection("orders").document(orderId)
+                        .get()
+                        .addOnSuccessListener(document -> {
+                            if (document.exists()) {
+                                String status = document.getString("status");
+                                if (status != null) {
+                                    tvStatus.setText("Status: " + status);
+                                } else {
+                                    tvStatus.setText("Status: Updating...");
+                                }
+                            } else {
+                                Log.w("LocationActivity", "Order not found in Firestore!");
+                            }
+                        })
+                        .addOnFailureListener(e -> {
+                            Log.e("LocationActivity", "Error loading order", e);
+                        });
+
+                handler.postDelayed(this, 2000); // refresh every 2s
+            }
+        };
+
+        handler.post(updateRunnable);
     }
 
     @Override
-    public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
-
-        // 🔹 Listen to delivery boy location updates in Firestore
-        DocumentReference ref = db.collection("delivery_locations").document(deliveryBoyId);
-        ref.addSnapshotListener((snapshot, e) -> {
-            if (snapshot != null && snapshot.exists()) {
-                double lat = snapshot.getDouble("lat");
-                double lng = snapshot.getDouble("lng");
-
-                LatLng position = new LatLng(lat, lng);
-
-                if (deliveryMarker == null) {
-                    deliveryMarker = mMap.addMarker(new MarkerOptions()
-                            .position(position)
-                            .title("Delivery Boy"));
-                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(position, 15));
-                } else {
-                    deliveryMarker.setPosition(position);
-                    mMap.animateCamera(CameraUpdateFactory.newLatLng(position));
-                }
-            }
-        });
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacks(updateRunnable);
     }
 }

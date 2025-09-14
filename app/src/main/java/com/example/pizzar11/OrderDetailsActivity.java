@@ -1,4 +1,5 @@
 package com.example.pizzar11;
+
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -7,7 +8,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.firestore.FirebaseFirestore;
-import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 
@@ -58,16 +58,23 @@ public class OrderDetailsActivity extends AppCompatActivity {
                         tvCustomerName.setText("Customer: " + document.getString("customerName"));
                         tvAddress.setText("Address: " + document.getString("address"));
 
-                        // Display items
+                        // Display items with quantity
                         List<Map<String, Object>> items = (List<Map<String, Object>>) document.get("items");
                         StringBuilder itemsText = new StringBuilder("Items:\n");
+
                         if (items != null) {
                             for (Map<String, Object> item : items) {
                                 String itemName = (String) item.get("name");
+                                Long quantity = (Long) item.get("quantity"); // Firestore number
                                 if (itemName == null) itemName = "Unknown item";
-                                itemsText.append("- ").append(itemName).append("\n");
+                                itemsText.append("- ")
+                                        .append(itemName)
+                                        .append(" ")
+                                        .append(quantity != null ? quantity : 0)
+                                        .append("\n");
                             }
                         }
+
                         tvItems.setText(itemsText.toString());
 
                         // Set current status
@@ -93,6 +100,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
         db.collection("orders").document(orderId)
                 .update("status", newStatus)
                 .addOnSuccessListener(aVoid -> {
+
                     Toast.makeText(this, "Status updated!", Toast.LENGTH_SHORT).show();
                 })
                 .addOnFailureListener(e -> {
