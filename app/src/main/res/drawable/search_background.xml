@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <!-- Red background color matching your theme -->
+    <solid android:color="#d32f2f" />
+
+    <!-- Rounded corners -->
+    <corners android:radius="24dp" />
+
+    <!-- Optional: Add a subtle shadow/stroke -->
+    <stroke
+        android:width="0dp"
+        android:color="@android:color/transparent" />
+
+</shape>

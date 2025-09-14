@@ -67,7 +67,7 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(new Intent(this, CartActivity.class));
                 return true;
             } else if (id == R.id.nav_location) {
-                startActivity(new Intent(this, LocationActivity.class));
+                startActivity(new Intent(this, OrderHistoryActivity.class));
                 return true;
             } else if (id == R.id.nav_profile) {
                 startActivity(new Intent(this, ProfileActivity.class));
