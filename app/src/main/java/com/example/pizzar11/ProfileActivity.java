@@ -46,6 +46,12 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+        Button btnLoadAdmin = findViewById(R.id.loadadmin);
+
+        btnLoadAdmin.setOnClickListener(v -> {
+            Intent intent = new Intent(ProfileActivity.this, ResOrder.class);
+            startActivity(intent);
+        });
 
 
 
@@ -80,6 +86,7 @@ public class ProfileActivity extends AppCompatActivity {
         btnAddImage = findViewById(R.id.btn_add_image);
         btnLogout = findViewById(R.id.btn_logout);
         ivProfile = findViewById(R.id.iv_profile);
+        ivSend = findViewById(R.id.iv_send);
         ivSend = findViewById(R.id.iv_send);
 
         // Firebase

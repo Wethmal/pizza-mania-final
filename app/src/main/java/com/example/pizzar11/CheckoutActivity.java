@@ -122,13 +122,29 @@ public class CheckoutActivity extends AppCompatActivity {
         order.put("items", cartList);
         order.put("date", new Date());
         order.put("paymentMethod", "Cash On Delivery");
+        order.put("status", "created"); // initial status for tracking
 
-        db.collection("orders").add(order).addOnSuccessListener(doc -> {
-            Toast.makeText(this, "Your order placed successfully! 🍕", Toast.LENGTH_LONG).show();
-            dbHelper.clearCart();
-            finish();
-        });
+        // Add order to Firestore
+        db.collection("orders").add(order)
+                .addOnSuccessListener(docRef -> {
+                    Toast.makeText(this, "Your order placed successfully! 🍕", Toast.LENGTH_LONG).show();
+                    dbHelper.clearCart();
+
+                    // Get the order ID from Firestore
+                    String orderId = docRef.getId(); // THIS is the missing piece
+
+                    // Open tracking screen and pass the order ID
+                    Intent intent = new Intent(this,LocationActivity.class);
+                    intent.putExtra("orderId", orderId);
+                    startActivity(intent);
+
+                    finish();
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(this, "Failed to place order: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                });
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

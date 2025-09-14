@@ -15,8 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Pizzar11">
         <activity
-            android:name=".Order_Tracking"
+            android:name=".ResOrder"
             android:exported="false" />
+        <activity android:name=".OrderDetailsActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

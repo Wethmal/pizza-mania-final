@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">pizzar11</string>
     <string name="send_message">Send message</string>
+
+    <string-array name="order_status_array">
+        <item>Select Status</item>
+        <item>Order Confirmed</item>
+        <item>Order Preparing</item>
+        <item>Order Ready to Deliver</item>
+        <item>Hand to the Delivery</item>
+    </string-array>
+
 </resources>
