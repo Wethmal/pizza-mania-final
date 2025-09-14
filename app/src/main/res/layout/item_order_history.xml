@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="3dp"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="#FFF3E0">
+
+        <!-- Order ID Row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:id="@+id/tvOrderId"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Order Id - 543458797"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#333333" />
+
+            <TextView
+                android:id="@+id/tvDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dec 14, 2024"
+                android:textSize="12sp"
+                android:textColor="#666666" />
+
+        </LinearLayout>
+
+        <!-- Items Row -->
+        <TextView
+            android:id="@+id/tvItems"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="items- peporin pizza2,vegee pizza 3"
+            android:textSize="14sp"
+            android:textColor="#555555"
+            android:layout_marginBottom="6dp" />
+
+        <!-- Status and Live Tracking Row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tvStatus"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="order status- preparing"
+                android:textSize="14sp"
+                android:textColor="#555555" />
+
+            <TextView
+                android:id="@+id/tvLiveTracking"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Live tracking"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="#FF5722"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:padding="8dp"
+                android:clickable="true"
+                android:focusable="true" />
+
+        </LinearLayout>
+
+        <!-- Status Indicator Line -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#FFE0B2"
+            android:layout_marginTop="12dp" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

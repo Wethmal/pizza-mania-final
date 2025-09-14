@@ -134,7 +134,7 @@ public class CheckoutActivity extends AppCompatActivity {
                     String orderId = docRef.getId(); // THIS is the missing piece
 
                     // Open tracking screen and pass the order ID
-                    Intent intent = new Intent(this,LocationActivity.class);
+                    Intent intent = new Intent(this,OrderHistoryActivity.class);
                     intent.putExtra("orderId", orderId);
                     startActivity(intent);
 
