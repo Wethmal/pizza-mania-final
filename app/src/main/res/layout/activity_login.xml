@@ -13,10 +13,22 @@
         tools:context=".LoginActivity">
 
 
+        <!-- Admin Icon (Top Right Corner) -->
+        <ImageView
+            android:id="@+id/adminIcon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/person"
+        android:contentDescription="Admin Login"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="16dp"
+            android:layout_marginTop="5dp"/>
 
 
-
-    <!-- Logo -->
+        <!-- Logo -->
     <ImageView
         android:id="@+id/logoImage"
         android:layout_width="307dp"

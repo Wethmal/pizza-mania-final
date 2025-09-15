@@ -1,24 +1,41 @@
 package com.example.pizzar11;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.LinearLayout;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class AdminDashbord extends AppCompatActivity {
+
+    LinearLayout cardAddFoods, cardViewOrders, cardCustomerMessages;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_admin_dashbord);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+        setContentView(R.layout.activity_admin_dashbord); // your XML filename
+
+        // Link cards
+        cardAddFoods = findViewById(R.id.cardAddFoods);
+        cardViewOrders = findViewById(R.id.cardViewOrders);
+        cardCustomerMessages = findViewById(R.id.cardCustomerMessages);
+
+        // Go to Add Foods Page
+        cardAddFoods.setOnClickListener(v -> {
+            Intent intent = new Intent(AdminDashbord.this, AddFood.class);
+            startActivity(intent);
+        });
+
+        // Go to View Orders Page
+        cardViewOrders.setOnClickListener(v -> {
+            Intent intent = new Intent(AdminDashbord.this, ResOrder.class);
+            startActivity(intent);
+        });
+
+        // Go to Customer Messages Page
+        cardCustomerMessages.setOnClickListener(v -> {
+            Intent intent = new Intent(AdminDashbord.this, MessagesActivity.class);
+            startActivity(intent);
         });
     }
 }
