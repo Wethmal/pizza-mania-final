@@ -3,13 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#F5F5F5"
+    android:background="@color/app_white"
     android:padding="8dp">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="📋 Orders"
+        android:text="📋 Orders Management"
         android:textSize="22sp"
         android:textStyle="bold"
         android:padding="16dp"

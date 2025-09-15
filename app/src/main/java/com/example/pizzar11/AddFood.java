@@ -26,6 +26,7 @@ public class AddFood extends AppCompatActivity {
         etImageUrl = findViewById(R.id.etImageUrl);
         etPrice = findViewById(R.id.etPrice);
         btnAddFood = findViewById(R.id.btnAddFood);
+        ImageView ivBack = findViewById(R.id.ivBack);
 
         // Firestore init
         db = FirebaseFirestore.getInstance();
@@ -34,6 +35,10 @@ public class AddFood extends AppCompatActivity {
             String branch = spinnerBranch.getSelectedItem().toString();
             addFoodToFirestore(branch);
         });
+
+
+
+        ivBack.setOnClickListener(v -> finish());
     }
 
     private void addFoodToFirestore(String branch) {

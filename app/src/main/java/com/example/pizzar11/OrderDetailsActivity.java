@@ -3,6 +3,7 @@ package com.example.pizzar11;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +32,8 @@ public class OrderDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_details);
+        ImageView ivBack = findViewById(R.id.ivBack);
+        ivBack.setOnClickListener(v -> finish());
 
         tvCustomerName = findViewById(R.id.tvCustomerName);
         tvAddress = findViewById(R.id.tvAddress);

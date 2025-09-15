@@ -1,336 +1,513 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F7FA">
+    android:background="#F8FAFC"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="20dp">
+        android:orientation="vertical">
 
         <!-- Header Section -->
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginBottom="30dp">
+            android:background="@color/tomato_red"
+            android:elevation="4dp"
+            android:paddingHorizontal="24dp"
+            android:paddingVertical="20dp">
 
             <TextView
+                android:id="@+id/tvTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="👨‍💼 Admin Dashboard"
-                android:textSize="28sp"
+                android:text="Pizza Mania"
+                android:textColor="#FFFFFF"
+                android:textSize="26sp"
                 android:textStyle="bold"
-                android:textColor="#2C3E50" />
+                android:fontFamily="sans-serif-medium"
+                app:layout_constraintBottom_toTopOf="@+id/tvSubtitle"
+                app:layout_constraintEnd_toStartOf="@+id/btnNotification"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/tvSubtitle"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="🔔"
-                android:textSize="24sp"
-                android:padding="8dp"
-                android:background="#FFFFFF"
-                android:elevation="4dp" />
+                android:alpha="0.9"
+                android:text="Admin Dashboard - Manage Your Resturent"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp"
+                android:fontFamily="sans-serif"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btnNotification"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 
-        </LinearLayout>
+            <FrameLayout
+                android:id="@+id/btnNotification"
+                android:layout_width="58dp"
+                android:layout_height="58dp"
+                android:background="@drawable/logo"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-        <!-- Welcome Message -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Welcome back! Manage your restaurant efficiently"
-            android:textSize="16sp"
-            android:textColor="#7F8C8D"
-            android:layout_marginBottom="25dp" />
+            </FrameLayout>
 
-        <!-- Dashboard Cards Grid -->
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Main Content -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center">
+            android:padding="20dp">
 
-            <!-- Row 1: Add New Foods -->
-            <LinearLayout
-                android:id="@+id/cardAddFoods"
+            <!-- Quick Actions Section -->
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:orientation="horizontal"
-                android:background="#FFFFFF"
-                android:elevation="8dp"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:padding="20dp"
-                android:gravity="center_vertical"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?attr/selectableItemBackground">
+                android:fontFamily="sans-serif-medium"
+                android:text="Quick Actions"
+                android:textColor="#212121"
+                android:textSize="19sp" />
 
-                <LinearLayout
+            <!-- Action Cards Container -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Add New Foods Card -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardAddFoods"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="14dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="14dp"
+                    app:cardElevation="3dp"
+                    app:cardUseCompatPadding="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="22dp">
+
+                        <!-- Icon Container -->
+                        <FrameLayout
+                            android:layout_width="58dp"
+                            android:layout_height="58dp"
+                            android:background="@drawable/circle_red_light">
+
+                            <TextView
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:background="#E53E3E"
+                                android:gravity="center"
+                                android:text="🍽"
+                                android:textSize="18sp" />
+
+                        </FrameLayout>
+
+                        <!-- Content -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="18dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-medium"
+                                android:text="Add New Foods"
+                                android:textColor="#212121"
+                                android:textSize="17sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:fontFamily="sans-serif"
+                                android:text="Add delicious items to your menu"
+                                android:textColor="#757575"
+                                android:textSize="14sp" />
+
+                        </LinearLayout>
+
+                        <!-- Arrow Icon -->
+                        <TextView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:gravity="center"
+                            android:text="→"
+                            android:textColor="#757575"
+                            android:textSize="18sp" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <!-- View Orders Card -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardViewOrders"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="14dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="14dp"
+                    app:cardElevation="3dp"
+                    app:cardUseCompatPadding="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="22dp">
+
+                        <!-- Icon Container -->
+                        <FrameLayout
+                            android:layout_width="58dp"
+                            android:layout_height="58dp"
+                            android:background="@drawable/circle_blue_light">
+
+                            <TextView
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:background="#3182CE"
+                                android:gravity="center"
+                                android:text="📋"
+                                android:textSize="18sp" />
+
+                        </FrameLayout>
+
+                        <!-- Content -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="18dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:fontFamily="sans-serif-medium"
+                                    android:text="View Orders"
+                                    android:textColor="#212121"
+                                    android:textSize="17sp" />
+
+
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:fontFamily="sans-serif"
+                                android:text="Track and manage customer orders"
+                                android:textColor="#757575"
+                                android:textSize="14sp" />
+
+                        </LinearLayout>
+
+                        <!-- Arrow Icon -->
+                        <TextView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:gravity="center"
+                            android:text="→"
+                            android:textColor="#757575"
+                            android:textSize="18sp" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <!-- Customer Messages Card -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardCustomerMessages"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="18dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="14dp"
+                    app:cardElevation="3dp"
+                    app:cardUseCompatPadding="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="22dp">
+
+                        <!-- Icon Container -->
+                        <FrameLayout
+                            android:layout_width="58dp"
+                            android:layout_height="58dp"
+                            android:background="@drawable/circle_green_light">
+
+                            <TextView
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:background="#38A169"
+                                android:gravity="center"
+                                android:text="💬"
+                                android:textSize="18sp" />
+
+                        </FrameLayout>
+
+                        <!-- Content -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="18dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:fontFamily="sans-serif-medium"
+                                    android:text="Customer Messages"
+                                    android:textColor="#212121"
+                                    android:textSize="17sp" />
+
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:fontFamily="sans-serif"
+                                android:text="Read feedback and support requests"
+                                android:textColor="#757575"
+                                android:textSize="14sp" />
+
+                        </LinearLayout>
+
+                        <!-- Arrow Icon -->
+                        <TextView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:gravity="center"
+                            android:text="→"
+                            android:textColor="#757575"
+                            android:textSize="18sp" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+            <!-- Analytics Section -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="Analytics Overview"
+                android:textColor="#212121"
+                android:textSize="19sp" />
+
+            <!-- Stats Grid -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <!-- Total Sales -->
+                <androidx.cardview.widget.CardView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="2dp"
+                    app:cardUseCompatPadding="true">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="🍕 Add New Foods"
-                        android:textSize="22sp"
-                        android:textStyle="bold"
-                        android:textColor="#E74C3C" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="128dp"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="18dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Add delicious items to your menu"
-                        android:textSize="14sp"
-                        android:textColor="#7F8C8D"
-                        android:layout_marginTop="4dp" />
+                        <TextView
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="#DD6B20"
+                            android:gravity="center"
+                            android:text="💰"
+                            android:textSize="20sp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Tap to manage →"
-                        android:textSize="12sp"
-                        android:textColor="#E74C3C"
-                        android:textStyle="italic"
-                        android:layout_marginTop="8dp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-condensed-medium"
+                            android:text="$2,450"
+                            android:textColor="#212121"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
 
-                </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:fontFamily="sans-serif"
+                            android:text="Total Sales"
+                            android:textColor="#757575"
+                            android:textSize="12sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="🍽️"
-                    android:textSize="48sp"
-                    android:layout_marginStart="16dp" />
+                    </LinearLayout>
 
-            </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
-            <!-- Row 2: View Orders -->
-            <LinearLayout
-                android:id="@+id/cardViewOrders"
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:orientation="horizontal"
-                android:background="#FFFFFF"
-                android:elevation="8dp"
-                android:layout_marginBottom="16dp"
-                android:padding="20dp"
-                android:gravity="center_vertical"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?attr/selectableItemBackground">
-
-                <LinearLayout
+                <!-- Menu Items -->
+                <androidx.cardview.widget.CardView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="4dp"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="2dp"
+                    app:cardUseCompatPadding="true">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="📋 View Orders"
-                        android:textSize="22sp"
-                        android:textStyle="bold"
-                        android:textColor="#3498DB" />
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="18dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Track and manage customer orders"
-                        android:textSize="14sp"
-                        android:textColor="#7F8C8D"
-                        android:layout_marginTop="4dp" />
+                        <TextView
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="#805AD5"
+                            android:gravity="center"
+                            android:text="🍕"
+                            android:textSize="20sp" />
 
-                    <TextView
-                        android:id="@+id/tvOrderCount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="12 pending orders"
-                        android:textSize="12sp"
-                        android:textColor="#3498DB"
-                        android:textStyle="bold"
-                        android:layout_marginTop="8dp"
-                        android:background="#EBF3FD"
-                        android:padding="4dp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-condensed-medium"
+                            android:text="47"
+                            android:textColor="#212121"
+                            android:textSize="19sp"
+                            android:textStyle="bold" />
 
-                </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:fontFamily="sans-serif"
+                            android:text="Menu Items"
+                            android:textColor="#757575"
+                            android:textSize="12sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="🛒"
-                    android:textSize="48sp"
-                    android:layout_marginStart="16dp" />
+                    </LinearLayout>
 
-            </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
-            <!-- Row 3: Customer Messages -->
-            <LinearLayout
-                android:id="@+id/cardCustomerMessages"
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:orientation="horizontal"
-                android:background="#FFFFFF"
-                android:elevation="8dp"
-                android:layout_marginBottom="16dp"
-                android:padding="20dp"
-                android:gravity="center_vertical"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?attr/selectableItemBackground">
-
-                <LinearLayout
+                <!-- Active Users -->
+                <androidx.cardview.widget.CardView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="2dp"
+                    app:cardUseCompatPadding="true">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="💬 Customer Messages"
-                        android:textSize="22sp"
-                        android:textStyle="bold"
-                        android:textColor="#27AE60" />
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="18dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Read feedback and support requests"
-                        android:textSize="14sp"
-                        android:textColor="#7F8C8D"
-                        android:layout_marginTop="4dp" />
+                        <TextView
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="#319795"
+                            android:gravity="center"
+                            android:text="👥"
+                            android:textSize="20sp" />
 
-                    <TextView
-                        android:id="@+id/tvMessageCount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="5 unread messages"
-                        android:textSize="12sp"
-                        android:textColor="#27AE60"
-                        android:textStyle="bold"
-                        android:layout_marginTop="8dp"
-                        android:background="#E8F5E8"
-                        android:padding="4dp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-condensed-medium"
+                            android:text="1,234"
+                            android:textColor="#212121"
+                            android:textSize="19sp"
+                            android:textStyle="bold" />
 
-                </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:fontFamily="sans-serif"
+                            android:text="Active Users"
+                            android:textColor="#757575"
+                            android:textSize="12sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="📧"
-                    android:textSize="48sp"
-                    android:layout_marginStart="16dp" />
+                    </LinearLayout>
 
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <!-- Statistics Section -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="📊 Quick Stats"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="#2C3E50"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="16dp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="3">
-
-            <!-- Total Sales -->
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="80dp"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:background="#FFFFFF"
-                android:elevation="4dp"
-                android:gravity="center"
-                android:layout_marginEnd="8dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="$2,450"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:textColor="#E67E22" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="💰 Sales"
-                    android:textSize="12sp"
-                    android:textColor="#7F8C8D" />
-
-            </LinearLayout>
-
-            <!-- Total Items -->
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="80dp"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:background="#FFFFFF"
-                android:elevation="4dp"
-                android:gravity="center"
-                android:layout_marginHorizontal="4dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="47"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:textColor="#9B59B6" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="🍕 Items"
-                    android:textSize="12sp"
-                    android:textColor="#7F8C8D" />
-
-            </LinearLayout>
-
-            <!-- Active Users -->
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="80dp"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:background="#FFFFFF"
-                android:elevation="4dp"
-                android:gravity="center"
-                android:layout_marginStart="8dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="1,234"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:textColor="#1ABC9C" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="👥 Users"
-                    android:textSize="12sp"
-                    android:textColor="#7F8C8D" />
+                </androidx.cardview.widget.CardView>
 
             </LinearLayout>
 

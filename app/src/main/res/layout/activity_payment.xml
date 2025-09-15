@@ -8,6 +8,8 @@
     android:padding="20dp"
     tools:context=".PaymentActivity">
 
+
+
     <!-- Header -->
     <TextView
         android:id="@+id/tv_title"
@@ -15,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="💳 Payment Gateway"
-        android:textColor="#1976D2"
+        android:textColor="@color/charcoal_black"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -190,7 +192,8 @@
             android:textSize="16sp"
             android:textStyle="bold"
             app:backgroundTint="#1976D2"
-            app:cornerRadius="8dp" />
+            app:cornerRadius="8dp"
+            android:backgroundTint="@color/cheese_yellow"/>
 
     </LinearLayout>
 

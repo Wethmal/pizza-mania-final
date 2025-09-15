@@ -12,6 +12,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -38,6 +39,17 @@ public class CheckoutActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
+
+
+        BottomNavigationView bottomNav = findViewById(R.id.bottomNavigationView);
+        bottomNav.setOnItemSelectedListener(item -> {
+            int id = item.getItemId();
+            if (id == R.id.nav_home) startActivity(new Intent(this, MainActivity.class));
+            else if (id == R.id.nav_cart) startActivity(new Intent(this, CartActivity.class));
+            else if (id == R.id.nav_location) startActivity(new Intent(this, OrderHistoryActivity.class));
+            else if (id == R.id.nav_profile) startActivity(new Intent(this, ProfileActivity.class));
+            return true;
+        });
 
         // Views
         tvAddressLine1 = findViewById(R.id.tv_address_line1);

@@ -2,13 +2,13 @@ package com.example.pizzar11;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 public class AdminDashbord extends AppCompatActivity {
 
-    LinearLayout cardAddFoods, cardViewOrders, cardCustomerMessages;
+    CardView cardAddFoods, cardViewOrders, cardCustomerMessages;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
