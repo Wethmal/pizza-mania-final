@@ -39,6 +39,11 @@ public class CheckoutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
 
+        ImageView ivBack = findViewById(R.id.ivBack);
+
+        ivBack.setOnClickListener(v -> finish());
+
+
         // Views
         tvAddressLine1 = findViewById(R.id.tv_address_line1);
         tvAddressLine2 = findViewById(R.id.tv_address_line2);
@@ -48,7 +53,7 @@ public class CheckoutActivity extends AppCompatActivity {
 
         btnEditAddress = findViewById(R.id.btn_edit_address);
         btnPlaceOrder = findViewById(R.id.btn_place_order);
-        btnBack = findViewById(R.id.btn_back);
+        btnBack = findViewById(R.id.ivBack);
 
         rbMastercard = findViewById(R.id.rb_mastercard);
         rbPaypal = findViewById(R.id.rb_paypal);
@@ -83,6 +88,11 @@ public class CheckoutActivity extends AppCompatActivity {
 
         // Place order
         btnPlaceOrder.setOnClickListener(v -> {
+            if (!isAddressSelected()) {
+                Toast.makeText(this, "Please select your delivery address!", Toast.LENGTH_SHORT).show();
+                return; // stop further execution
+            }
+
             if(rbMastercard.isChecked()){
                 Intent intent = new Intent(CheckoutActivity.this, PaymentActivity.class);
                 startActivityForResult(intent, 2001);
@@ -145,6 +155,9 @@ public class CheckoutActivity extends AppCompatActivity {
                 });
     }
 
+    private boolean isAddressSelected() {
+        return tvAddressLine1.getText().toString().trim().length() > 0 ;
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

@@ -49,23 +49,15 @@ public class OrderHistoryActivity extends AppCompatActivity {
 
         loadOrders();
 
+        // Bottom Navigation
         BottomNavigationView bottomNav = findViewById(R.id.bottomNavigationView);
         bottomNav.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
-            if (id == R.id.nav_home) {
-                startActivity(new Intent(this, MainActivity.class));
-                return true;
-            } else if (id == R.id.nav_cart) {
-                startActivity(new Intent(this, CartActivity.class));
-                return true;
-            } else if (id == R.id.nav_location) {
-                startActivity(new Intent(this, OrderHistoryActivity.class));
-                return true;
-            } else if (id == R.id.nav_profile) {
-                startActivity(new Intent(this, ProfileActivity.class));
-                return true;
-            }
-            return false;
+            if (id == R.id.nav_home) startActivity(new Intent(this, MainActivity.class));
+            else if (id == R.id.nav_cart) startActivity(new Intent(this, CartActivity.class));
+            else if (id == R.id.nav_location) startActivity(new Intent(this, OrderHistoryActivity.class));
+            else if (id == R.id.nav_profile) startActivity(new Intent(this, ProfileActivity.class));
+            return true;
         });
     }
 

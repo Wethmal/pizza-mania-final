@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5">
+    android:background="@drawable/gradient_bg">
 
     <!-- Map Fragment -->
     <fragment
@@ -16,16 +16,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Top Search Bar -->
+    <!-- Enhanced Top Search Bar -->
     <androidx.cardview.widget.CardView
         android:id="@+id/search_card"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        app:cardCornerRadius="25dp"
-        app:cardElevation="8dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="20dp"
+        app:cardBackgroundColor="#F0FFFFFF"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -35,17 +36,19 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:padding="16dp">
+            android:padding="20dp">
 
             <ImageView
                 android:id="@+id/btn_back"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginEnd="12dp"
-                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/btn_circle"
                 android:clickable="true"
                 android:focusable="true"
-                android:src="@drawable/ic_arrow_back" />
+                android:padding="4dp"
+                android:src="@drawable/ic_arrow_back"
+                android:tint="#2C3E50" />
 
             <EditText
                 android:id="@+id/et_search_location"
@@ -55,95 +58,99 @@
                 android:background="@android:color/transparent"
                 android:hint="Search for location..."
                 android:inputType="text"
-                android:textColor="#333333"
-                android:textColorHint="#999999"
-                android:textSize="16sp" />
+                android:textColor="#2C3E50"
+                android:textColorHint="#7F8C8D"
+                android:textSize="18sp" />
 
             <ImageView
                 android:id="@+id/btn_search"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginStart="12dp"
-                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/btn_search"
                 android:clickable="true"
                 android:focusable="true"
+                android:padding="6dp"
                 android:src="@drawable/search"
-                android:tint="#E53935" />
+                android:tint="#FFFFFF" />
 
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 
-    <!-- Map Control Buttons -->
+    <!-- Enhanced Map Control Buttons -->
     <LinearLayout
         android:id="@+id/map_controls"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="20dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_card"
-        android:layout_marginTop="16dp">
+        app:layout_constraintTop_toBottomOf="@+id/search_card">
 
         <!-- My Location Button -->
         <androidx.cardview.widget.CardView
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginBottom="8dp"
-            app:cardCornerRadius="24dp"
-            app:cardElevation="6dp">
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginBottom="12dp"
+            app:cardBackgroundColor="@color/cheese_yellow"
+            app:cardCornerRadius="28dp"
+            app:cardElevation="12dp">
 
             <ImageView
                 android:id="@+id/btn_my_location"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
                 android:layout_gravity="center"
-                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:background="@drawable/btn_ripple"
                 android:clickable="true"
                 android:focusable="true"
                 android:src="@drawable/location"
-                android:tint="#E53935" />
+                android:tint="#FFFFFF" />
 
         </androidx.cardview.widget.CardView>
 
         <!-- Zoom In Button -->
         <androidx.cardview.widget.CardView
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginBottom="8dp"
-            app:cardCornerRadius="24dp"
-            app:cardElevation="6dp">
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginBottom="12dp"
+            app:cardBackgroundColor="#FFFFFF"
+            app:cardCornerRadius="28dp"
+            app:cardElevation="8dp">
 
             <ImageView
                 android:id="@+id/btn_zoom_in"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
                 android:layout_gravity="center"
-                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:background="@drawable/btn_ripple"
                 android:clickable="true"
                 android:focusable="true"
                 android:src="@drawable/ic_plus"
-                android:tint="#333333" />
+                android:tint="#34495E" />
 
         </androidx.cardview.widget.CardView>
 
         <!-- Zoom Out Button -->
         <androidx.cardview.widget.CardView
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            app:cardCornerRadius="24dp"
-            app:cardElevation="6dp">
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            app:cardBackgroundColor="#FFFFFF"
+            app:cardCornerRadius="28dp"
+            app:cardElevation="8dp">
 
             <ImageView
                 android:id="@+id/btn_zoom_out"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
                 android:layout_gravity="center"
-                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:background="@drawable/btn_ripple"
                 android:clickable="true"
                 android:focusable="true"
                 android:src="@drawable/ic_minus"
-                android:tint="#333333" />
+                android:tint="#34495E" />
 
         </androidx.cardview.widget.CardView>
 
@@ -152,25 +159,26 @@
     <!-- Center Pin Marker -->
     <ImageView
         android:id="@+id/center_marker"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:src="@drawable/pin"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:src="@drawable/pin_marker"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginBottom="24dp" />
+        android:layout_marginBottom="28dp" />
 
-    <!-- Location Info Card (Bottom Sheet Style) -->
+    <!-- Enhanced Location Info Card -->
     <androidx.cardview.widget.CardView
         android:id="@+id/location_info_card"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="24dp"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="12dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="28dp"
+        app:cardBackgroundColor="#F8FFFFFF"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="20dp"
         app:layout_constraintBottom_toTopOf="@+id/bottom_actions"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -180,29 +188,39 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:padding="24dp">
 
-            <!-- Location Pin Icon and Title -->
+            <!-- Location Header -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:layout_marginBottom="12dp"
+                android:layout_marginBottom="16dp"
                 android:orientation="horizontal">
 
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginEnd="12dp"
-                    android:src="@drawable/location"
-                    android:backgroundTint="@color/cheese_yellow" />
+                <androidx.cardview.widget.CardView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="16dp"
+                    app:cardBackgroundColor="@color/cheese_yellow"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="4dp">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/location"
+                        android:tint="#FFFFFF" />
+
+                </androidx.cardview.widget.CardView>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Selected Location"
-                    android:textColor="#333333"
-                    android:textSize="16sp"
+                    android:textColor="#2C3E50"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -213,33 +231,47 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Fetching location..."
-                android:textColor="#666666"
-                android:textSize="14sp"
-                android:layout_marginBottom="8dp"
-                android:lineSpacingExtra="2dp" />
+                android:textColor="#34495E"
+                android:textSize="16sp"
+                android:layout_marginBottom="12dp"
+                android:lineSpacingExtra="4dp" />
 
             <!-- Coordinates -->
-            <TextView
-                android:id="@+id/tv_coordinates"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Lat: 0.0, Lng: 0.0"
-                android:textColor="#999999"
-                android:textSize="12sp"
-                android:fontFamily="monospace" />
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/ic_coords"
+                    android:tint="#7F8C8D" />
+
+                <TextView
+                    android:id="@+id/tv_coordinates"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Lat: 0.0, Lng: 0.0"
+                    android:textColor="#7F8C8D"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 
-    <!-- Bottom Action Buttons -->
+    <!-- Enhanced Bottom Action Buttons -->
     <LinearLayout
         android:id="@+id/bottom_actions"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="40dp"
         android:orientation="horizontal"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -249,22 +281,22 @@
         <!-- Cancel Button -->
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="56dp"
+            android:layout_height="64dp"
             android:layout_weight="1"
-            android:layout_marginEnd="8dp"
-            app:cardCornerRadius="28dp"
-            app:cardElevation="6dp"
-            android:foreground="?android:attr/selectableItemBackground">
-
+            android:layout_marginEnd="12dp"
+            app:cardBackgroundColor="#F8F9FA"
+            app:cardCornerRadius="32dp"
+            app:cardElevation="8dp"
+            android:foreground="@drawable/btn_ripple_light">
 
             <Button
                 android:id="@+id/btn_cancel"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@android:color/white"
+                android:background="@android:color/transparent"
                 android:text="Cancel"
-                android:textColor="#666666"
-                android:textSize="16sp"
+                android:textColor="#6C757D"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 android:textAllCaps="false"
                 style="?android:attr/borderlessButtonStyle" />
@@ -274,23 +306,40 @@
         <!-- Done Button -->
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
-            android:layout_height="56dp"
+            android:layout_height="64dp"
             android:layout_weight="2"
-            android:layout_marginStart="8dp"
-            app:cardCornerRadius="28dp"
-            app:cardElevation="6dp">
+            android:layout_marginStart="12dp"
+            app:cardBackgroundColor="@color/cheese_yellow"
+            app:cardCornerRadius="32dp"
+            app:cardElevation="12dp"
+            android:foreground="@drawable/btn_ripple_yellow">
 
-            <Button
-                android:id="@+id/btn_done"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/cheese_yellow"
-                android:text="Confirm Location"
-                android:textColor="#FFFFFF"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:textAllCaps="false"
-                style="?android:attr/borderlessButtonStyle"/>
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/ic_check"
+                    android:tint="#FFFFFF" />
+
+                <Button
+                    android:id="@+id/btn_done"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:text="Confirm Location"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textAllCaps="false"
+                    style="?android:attr/borderlessButtonStyle"/>
+
+            </LinearLayout>
 
         </androidx.cardview.widget.CardView>
 
@@ -302,8 +351,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="8dp"
+        app:cardBackgroundColor="#F0FFFFFF"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -314,39 +364,40 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="24dp">
+            android:padding="32dp">
 
             <ProgressBar
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginBottom="12dp"
-                android:indeterminateTint="#E53935" />
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="16dp"
+                android:indeterminateTint="@color/cheese_yellow" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Getting location..."
-                android:textColor="#666666"
-                android:textSize="14sp" />
+                android:textColor="#34495E"
+                android:textSize="16sp" />
 
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 
-    <!-- Search Results RecyclerView (Initially Hidden) -->
+    <!-- Search Results -->
     <androidx.cardview.widget.CardView
         android:id="@+id/search_results_card"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
         android:visibility="gone"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="8dp"
+        app:cardBackgroundColor="#F8FFFFFF"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="16dp"
         app:layout_constraintBottom_toTopOf="@+id/location_info_card"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_max="300dp"
+        app:layout_constraintHeight_max="320dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search_card">
 
@@ -354,7 +405,7 @@
             android:id="@+id/search_results_recycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="8dp" />
+            android:padding="12dp" />
 
     </androidx.cardview.widget.CardView>
 
