@@ -39,11 +39,6 @@ public class CheckoutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
 
-        ImageView ivBack = findViewById(R.id.ivBack);
-
-        ivBack.setOnClickListener(v -> finish());
-
-
         // Views
         tvAddressLine1 = findViewById(R.id.tv_address_line1);
         tvAddressLine2 = findViewById(R.id.tv_address_line2);
@@ -82,7 +77,7 @@ public class CheckoutActivity extends AppCompatActivity {
             startActivityForResult(intent, 1001);
         });
 
-        // Payment method handling
+        // Payment method toggle
         rbMastercard.setOnClickListener(v -> rbPaypal.setChecked(false));
         rbPaypal.setOnClickListener(v -> rbMastercard.setChecked(false));
 
@@ -90,14 +85,16 @@ public class CheckoutActivity extends AppCompatActivity {
         btnPlaceOrder.setOnClickListener(v -> {
             if (!isAddressSelected()) {
                 Toast.makeText(this, "Please select your delivery address!", Toast.LENGTH_SHORT).show();
-                return; // stop further execution
+                return;
             }
 
             if(rbMastercard.isChecked()){
+                // Open PaymentActivity
                 Intent intent = new Intent(CheckoutActivity.this, PaymentActivity.class);
                 startActivityForResult(intent, 2001);
             } else if(rbPaypal.isChecked()){
-                placeOrderCOD();
+                // Cash on Delivery
+                ordercrerate("Cash On Delivery");
             } else {
                 Toast.makeText(this, "Please select a payment method", Toast.LENGTH_SHORT).show();
             }
@@ -110,18 +107,15 @@ public class CheckoutActivity extends AppCompatActivity {
             cartTotal += item.getPrice() * item.getQuantity();
         }
 
-        // same as CartActivity
         double tax = cartTotal * 0.18;   // 18% tax
-        double delivery = 150;           // fixed
+        double delivery = 150;           // fixed delivery
         double subtotal = cartTotal + tax + delivery;
 
-        // update UI
         totalPayment = subtotal;
         tvTotalPayment.setText("LKR " + String.format("%.2f", subtotal));
     }
 
-
-    private void placeOrderCOD(){
+    public void ordercrerate(String paymentMethod){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         Map<String, Object> order = new HashMap<>();
         order.put("customerName", customerName);
@@ -131,11 +125,9 @@ public class CheckoutActivity extends AppCompatActivity {
                 tvAddressLine4.getText().toString());
         order.put("items", cartList);
         order.put("date", new Date());
-        order.put("paymentMethod", "Cash On Delivery");
-        order.put("status", "created"); // initial status for tracking
+        order.put("paymentMethod", paymentMethod);
+        order.put("status", "created");
 
-
-        // Save coordinates if available
         double lat = 0, lng = 0;
         if(tvAddressLine1.getTag() != null && tvAddressLine2.getTag() != null){
             lat = (double) tvAddressLine1.getTag();
@@ -144,20 +136,15 @@ public class CheckoutActivity extends AppCompatActivity {
         order.put("latitude", lat);
         order.put("longitude", lng);
 
-        // Add order to Firestore
         db.collection("orders").add(order)
                 .addOnSuccessListener(docRef -> {
                     Toast.makeText(this, "Your order placed successfully! 🍕", Toast.LENGTH_LONG).show();
                     dbHelper.clearCart();
 
-                    // Get the order ID from Firestore
-                    String orderId = docRef.getId(); // THIS is the missing piece
-
-                    // Open tracking screen and pass the order ID
-                    Intent intent = new Intent(this,OrderHistoryActivity.class);
+                    String orderId = docRef.getId();
+                    Intent intent = new Intent(this, OrderHistoryActivity.class);
                     intent.putExtra("orderId", orderId);
                     startActivity(intent);
-
                     finish();
                 })
                 .addOnFailureListener(e -> {
@@ -177,10 +164,8 @@ public class CheckoutActivity extends AppCompatActivity {
             double lat = data.getDoubleExtra("lat",0);
             double lng = data.getDoubleExtra("lng",0);
 
-            // Store coordinates in tags
             tvAddressLine1.setTag(lat);
             tvAddressLine2.setTag(lng);
-
 
             // Reverse geocode
             try {
@@ -188,7 +173,6 @@ public class CheckoutActivity extends AppCompatActivity {
                 List<Address> addresses = geocoder.getFromLocation(lat, lng, 1);
                 if(addresses != null && addresses.size() > 0){
                     Address address = addresses.get(0);
-
                     tvAddressLine1.setText(address.getFeatureName());
                     tvAddressLine2.setText(address.getThoroughfare());
                     tvAddressLine3.setText(address.getLocality());
@@ -203,6 +187,11 @@ public class CheckoutActivity extends AppCompatActivity {
                 e.printStackTrace();
                 Toast.makeText(this, "Failed to get address!", Toast.LENGTH_SHORT).show();
             }
+        }
+
+        // Card payment result
+        if(requestCode == 2001 && resultCode == RESULT_OK){
+            ordercrerate("Card");
         }
     }
 }

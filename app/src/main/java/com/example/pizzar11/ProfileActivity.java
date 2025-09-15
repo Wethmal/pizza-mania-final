@@ -56,7 +56,7 @@ public class ProfileActivity extends AppCompatActivity {
         Button btndilever = findViewById(R.id.dilver);
 
         btndilever.setOnClickListener(v -> {
-            Intent intent = new Intent(ProfileActivity.this, DeliveryMapActivity.class);
+            Intent intent = new Intent(ProfileActivity.this, AddFood.class);
             startActivity(intent);
         });
 

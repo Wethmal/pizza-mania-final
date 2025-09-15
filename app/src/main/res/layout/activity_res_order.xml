@@ -2,19 +2,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#F5F5F5"
+    android:padding="8dp">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Orders"
-        android:textSize="20sp"
+        android:text="📋 Orders"
+        android:textSize="22sp"
+        android:textStyle="bold"
         android:padding="16dp"
-        android:gravity="center" />
+        android:gravity="center"
+        android:textColor="#333333"/>
 
     <ListView
         android:id="@+id/listViewOrders"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:divider="#CCCCCC"
+        android:dividerHeight="1dp"
+        android:padding="8dp"
+        android:scrollbars="vertical"/>
 
 </LinearLayout>

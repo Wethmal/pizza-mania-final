@@ -6,13 +6,15 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/app_white"
     tools:context=".ProfileActivity">
 
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@android:color/white"
+        android:fillViewport="true"
+        android:scrollbars="none"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,17 +25,18 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- Header with Pizza Mania logo -->
+            <!-- Enhanced Header with Gradient Background -->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:background="#d32f2f"
+                android:layout_height="80dp"
+                android:background="@color/tomato_red"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:elevation="4dp">
 
                 <ImageView
-                    android:layout_width="180dp"
-                    android:layout_height="40dp"
+                    android:layout_width="200dp"
+                    android:layout_height="45dp"
                     android:layout_marginEnd="8dp"
                     android:src="@drawable/headerimg"
                     android:scaleType="fitCenter"
@@ -41,234 +44,356 @@
 
             </LinearLayout>
 
-            <!-- Profile Image Section -->
-            <LinearLayout
+            <!-- Profile Section with Card -->
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:layout_margin="16dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="8dp"
+                app:cardBackgroundColor="@android:color/white">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    app:cardCornerRadius="60dp"
-                    app:cardElevation="4dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="24dp"
+                    android:gravity="center">
 
-                    <ImageView
-                        android:id="@+id/iv_profile"
+                    <!-- Profile Image with Enhanced Styling -->
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="140dp"
+                            android:layout_height="140dp"
+                            app:cardCornerRadius="70dp"
+                            app:cardElevation="12dp"
+                            app:cardBackgroundColor="@android:color/white">
+
+                            <ImageView
+                                android:id="@+id/iv_profile"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/person"
+                                android:contentDescription="Profile Picture" />
+
+                        </androidx.cardview.widget.CardView>
+
+                    </RelativeLayout>
+
+                    <!-- Add Profile Button with Modern Design -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_add_image"
+                        android:layout_width="160dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="20dp"
+                        android:backgroundTint="#EF7722"
+                        android:text="Add Profile"
+                        android:textColor="@android:color/white"
+                        android:textSize="14sp"
+                        android:textAllCaps="false"
+                        app:cornerRadius="25dp"
+                        app:iconGravity="textStart"
+                        app:rippleColor="@color/ripple_color"
+                        android:elevation="4dp" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- Profile Information Card -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="6dp"
+                app:cardBackgroundColor="@android:color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <!-- Section Title -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Personal Information"
+                        android:textColor="#2C3E50"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="20dp"
+                        android:drawablePadding="12dp"
+                        android:gravity="center_vertical" />
+
+                    <!-- Name Field with Modern Input -->
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/person"
-                        android:contentDescription="Profile Picture" />
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        app:boxCornerRadiusTopStart="12dp"
+                        app:boxCornerRadiusTopEnd="12dp"
+                        app:boxCornerRadiusBottomStart="12dp"
+                        app:boxCornerRadiusBottomEnd="12dp"
+                        app:boxStrokeColor="@color/cheese_yellow"
+                        app:hintTextColor="@color/cheese_yellow"
+                        android:hint="Full Name">
 
-                    <!-- Red border overlay -->
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/tv_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Name"
+                            android:textColor="#333333"
+                            android:textSize="16sp"
+                            android:inputType="textPersonName" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!-- Update Name Button -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_update_name"
+                        android:layout_width="140dp"
+                        android:layout_height="48dp"
+                        android:layout_gravity="end"
+                        android:layout_marginBottom="24dp"
+                        android:backgroundTint="#EF7722"
+                        android:text="Update Name"
+                        android:textColor="@android:color/white"
+                        android:textSize="12sp"
+                        android:textAllCaps="false"
+                        app:cornerRadius="24dp"
+                        app:rippleColor="@color/ripple_color" />
+
+                    <!-- Divider -->
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/circle_border_red" />
+                        android:layout_height="1dp"
+                        android:layout_marginVertical="16dp"
+                        android:background="@drawable/gradient_divider" />
 
-                </androidx.cardview.widget.CardView>
-
-                <Button
-                    android:id="@+id/btn_add_image"
-                    android:layout_width="120dp"
-                    android:layout_height="48dp"
-                    android:layout_marginTop="15dp"
-                    android:backgroundTint="@color/cheese_yellow"
-                    android:text="Add Profile "
-                    android:textColor="@android:color/white"
-                    android:textSize="12sp"
-                    android:textAllCaps="false" />
-
-            </LinearLayout>
-
-            <!-- Name and Phone Fields -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginEnd="32dp"
-                android:orientation="vertical">
-
-                <!-- Name Field -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
-
-                    <EditText
-                        android:id="@+id/tv_name"
-                        android:layout_width="0dp"
+                    <!-- Phone Field with Modern Input -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Name"
-                        android:textColor="#333333"
-                        android:textSize="16sp"
-                        android:textStyle="normal" />
+                        android:layout_marginBottom="16dp"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        app:boxCornerRadiusTopStart="12dp"
+                        app:boxCornerRadiusTopEnd="12dp"
+                        app:boxCornerRadiusBottomStart="12dp"
+                        app:boxCornerRadiusBottomEnd="12dp"
+                        app:boxStrokeColor="@color/cheese_yellow"
+                        app:hintTextColor="@color/cheese_yellow"
+                        android:hint="Phone Number"
+                        app:prefixText="+94 ">
 
-                    <Button
-                        android:id="@+id/btn_update_name"
-                        android:layout_width="100dp"
-                        android:layout_height="40dp"
-                        android:backgroundTint="@color/cheese_yellow"
-                        android:text="Update"
-                        android:textColor="@android:color/white"
-                        android:textSize="12sp"
-                        android:textAllCaps="false" />
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/tv_phone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Phone"
+                            android:textColor="#333333"
+                            android:textSize="16sp"
+                            android:inputType="phone" />
 
-                </LinearLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginBottom="20dp"
-                    android:background="#E0E0E0" />
-
-                <!-- Phone Field -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
-
-                    <EditText
-                        android:id="@+id/tv_phone"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Phone"
-                        android:textColor="#333333"
-                        android:textSize="16sp"
-                        android:textStyle="normal" />
-
-                    <Button
+                    <!-- Update Phone Button -->
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_update_phone"
-                        android:layout_width="100dp"
-                        android:layout_height="40dp"
-                        android:backgroundTint="@color/cheese_yellow"
-                        android:text="Update"
+                        android:layout_width="140dp"
+                        android:layout_height="48dp"
+                        android:layout_gravity="end"
+                        android:backgroundTint="#EF7722"
+                        android:text="Update Phone"
                         android:textColor="@android:color/white"
                         android:textSize="12sp"
-                        android:textAllCaps="false" />
+                        android:textAllCaps="false"
+                        app:cornerRadius="24dp"
+                        app:rippleColor="@color/ripple_color" />
 
                 </LinearLayout>
 
-                <Button
-                    android:id="@+id/loadadmin"
-                    android:layout_width="200dp"
-                    android:layout_height="40dp"
-                    android:backgroundTint="@color/cheese_yellow"
-                    android:text="Update"
-                    android:textColor="@android:color/white"
-                    android:textSize="12sp"
-                    android:textAllCaps="false" />
+            </androidx.cardview.widget.CardView>
 
-                <Button
-                    android:id="@+id/dilver"
-                    android:layout_width="200dp"
-                    android:layout_height="40dp"
-                    android:backgroundTint="@color/cheese_yellow"
-                    android:text="dilever"
-                    android:textColor="@android:color/white"
-                    android:textSize="12sp"
-                    android:textAllCaps="false" />
-
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#E0E0E0" />
-
-            </LinearLayout>
-
-            <!-- Contact Us Section -->
-            <LinearLayout
+            <!-- Admin Actions Card -->
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="32dp"
-                android:orientation="vertical">
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="6dp"
+                app:cardBackgroundColor="@android:color/white">
 
-                <androidx.cardview.widget.CardView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="2dp"
-                    app:cardBackgroundColor="@android:color/white">
+                    android:orientation="vertical"
+                    android:padding="20dp">
 
+                    <!-- Section Title -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Admin"
+                        android:textColor="#2C3E50"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="20dp"
+                        android:drawableStart="@drawable/person"
+                        android:drawablePadding="12dp"
+                        android:gravity="center_vertical" />
+
+                    <!-- Admin Actions Row -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="16dp">
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:weightSum="2">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="12dp"
-                            android:text="Contact Us"
-                            android:textColor="#E53E3E"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
-
-                        <EditText
-                            android:id="@+id/et_contact_message"
-                            android:layout_width="match_parent"
-                            android:layout_height="100dp"
-                            android:background="@drawable/edittext_background"
-                            android:gravity="top|start"
-                            android:hint="Type your message here..."
-                            android:inputType="textMultiLine"
-                            android:padding="12dp"
-                            android:textColorHint="#999999"
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/loadadmin"
+                            android:layout_width="0dp"
+                            android:layout_height="56dp"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="8dp"
+                            android:backgroundTint="#3498DB"
+                            android:text="Load Admin"
+                            android:textColor="@android:color/white"
                             android:textSize="14sp"
-                            android:scrollbars="vertical" />
+                            android:textAllCaps="false"
+                            app:cornerRadius="16dp"
+                            app:iconGravity="textStart"
+                            app:rippleColor="@color/ripple_color" />
 
-                        <ImageView
-                            android:id="@+id/iv_send"
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:layout_gravity="end"
-                            android:layout_marginTop="8dp"
-                            android:src="@drawable/send"
-                            android:clickable="true"
-                            android:focusable="true"
-                            android:background="?android:attr/selectableItemBackgroundBorderless"
-                            app:tint="#E53E3E"
-                            android:contentDescription="Send message"/>
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/dilver"
+                            android:layout_width="0dp"
+                            android:layout_height="56dp"
+                            android:layout_weight="1"
+                            android:layout_marginStart="8dp"
+                            android:backgroundTint="#27AE60"
+                            android:text="Delivery"
+                            android:textColor="@android:color/white"
+                            android:textSize="14sp"
+                            android:textAllCaps="false"
+                            app:cornerRadius="16dp"
+                            app:iconGravity="textStart"
+                            app:rippleColor="@color/ripple_color" />
 
                     </LinearLayout>
 
-                </androidx.cardview.widget.CardView>
+                </LinearLayout>
 
-            </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
-            <Button
+            <!-- Contact Us Section with Enhanced Design -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="6dp"
+                app:cardBackgroundColor="@android:color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:text="Contact Us"
+                        android:textColor="#E53E3E"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:drawablePadding="12dp"
+                        android:gravity="center_vertical" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        app:boxCornerRadiusTopStart="16dp"
+                        app:boxCornerRadiusTopEnd="16dp"
+                        app:boxCornerRadiusBottomStart="16dp"
+                        app:boxCornerRadiusBottomEnd="16dp"
+                        app:boxStrokeColor="@color/cheese_yellow"
+                        app:hintTextColor="@color/cheese_yellow"
+                        android:hint="Type your message here..."
+                        app:counterEnabled="true"
+                        app:counterMaxLength="500">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_contact_message"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:gravity="top|start"
+                            android:inputType="textMultiLine"
+                            android:textColorHint="#999999"
+                            android:textSize="14sp"
+                            android:scrollbars="vertical"
+                            android:maxLength="500" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!-- Send Button -->
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/iv_send"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_marginTop="16dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:contentDescription="Send message"
+                        app:backgroundTint="@color/cheese_yellow"
+                        app:tint="@android:color/white"
+                        app:srcCompat="@drawable/send"
+                        app:elevation="6dp"
+                        app:rippleColor="@color/ripple_color" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- Logout Button with Modern Design -->
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_logout"
-                android:layout_width="190dp"
-                android:layout_height="48dp"
+                android:layout_width="200dp"
+                android:layout_height="56dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginBottom="32dp"
-                android:backgroundTint="@color/cheese_yellow"
+                android:backgroundTint="#E74C3C"
                 android:text="Logout"
                 android:textColor="@android:color/white"
-                android:textSize="14sp"
-                android:textAllCaps="false" />
-
-
+                android:textSize="16sp"
+                android:textAllCaps="false"
+                app:cornerRadius="28dp"
+                app:iconGravity="textStart"
+                app:rippleColor="@color/ripple_color"
+                android:elevation="4dp" />
 
         </LinearLayout>
 
     </ScrollView>
-
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"

@@ -56,8 +56,32 @@ public class ResOrder extends AppCompatActivity {
                         for (QueryDocumentSnapshot doc : value) {
                             Order order = new Order();
                             order.setId(doc.getId());
-                            order.setCustomerName(doc.getString("customerName"));
-                            order.setStatus(doc.getString("status"));
+                            // Set customer name with emoji
+                            String customerName = doc.getString("customerName");
+                            order.setCustomerName("👤 " + customerName); // person emoji
+
+                            String status = doc.getString("status");
+                            switch (status) {
+                                case "created":
+                                    order.setStatus("📝 " + status); // memo / new order
+                                    break;
+                                case "order confirmed":
+                                    order.setStatus("✅ " + status); // check mark
+                                    break;
+                                case "order preparing":
+                                    order.setStatus("🍳 " + status); // cooking / preparing
+                                    break;
+                                case "order hand out to delivery":
+                                    order.setStatus("📦🚚 " + status); // package + delivery truck
+                                    break;
+                                case "order Delivered":
+                                    order.setStatus("🏠📬 " + status); // home + mailbox / delivered
+                                    break;
+                                default:
+                                    order.setStatus("ℹ️ " + status); // info / unknown
+                                    break;
+                            }
+
                             // Skip date for now to avoid errors
 
                             orderList.add(order);

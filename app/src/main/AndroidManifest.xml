@@ -15,6 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Pizzar11">
         <activity
+            android:name=".AdminDashbord"
+            android:exported="false" />
+        <activity
+            android:name=".AddFood"
+            android:exported="false" />
+        <activity
             android:name=".TrackOrderActivity"
             android:exported="false" />
         <activity

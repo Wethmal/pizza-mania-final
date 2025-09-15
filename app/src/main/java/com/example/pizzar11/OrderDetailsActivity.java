@@ -23,7 +23,8 @@ public class OrderDetailsActivity extends AppCompatActivity {
             "created",
             "order confirmed",
             "order preparing",
-            "order hand out to delivery"
+            "order hand out to delivery",
+            "order Delivered"
     };
 
     @Override
