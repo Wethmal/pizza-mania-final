@@ -1,5 +1,6 @@
 package com.example.pizzar11;
 
+import android.content.Intent;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,6 +52,13 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
         holder.tvItems.setText("Items - " + itemsStr);
 
         holder.tvStatus.setText("Order status - " + order.getStatus());
+
+        // 🔥 Add click listener for "Live Tracking" button
+        holder.tvLiveTracking.setOnClickListener(v -> {
+            Intent intent = new Intent(v.getContext(), TrackOrderActivity.class);
+            intent.putExtra("orderId", order.getId()); // pass order id
+            v.getContext().startActivity(intent);
+        });
     }
 
     @Override
@@ -67,7 +75,7 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
             tvDate = itemView.findViewById(R.id.tvDate);
             tvItems = itemView.findViewById(R.id.tvItems);
             tvStatus = itemView.findViewById(R.id.tvStatus);
-            tvLiveTracking = itemView.findViewById(R.id.tvLiveTracking);
+            tvLiveTracking = itemView.findViewById(R.id.track);
         }
     }
 }

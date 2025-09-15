@@ -72,7 +72,7 @@
                 android:textColor="#555555" />
 
             <TextView
-                android:id="@+id/tvLiveTracking"
+                android:id="@+id/track"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Live tracking"
@@ -83,6 +83,9 @@
                 android:padding="8dp"
                 android:clickable="true"
                 android:focusable="true" />
+
+
+
 
         </LinearLayout>
 

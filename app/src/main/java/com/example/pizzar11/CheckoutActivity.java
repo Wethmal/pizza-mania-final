@@ -134,6 +134,16 @@ public class CheckoutActivity extends AppCompatActivity {
         order.put("paymentMethod", "Cash On Delivery");
         order.put("status", "created"); // initial status for tracking
 
+
+        // Save coordinates if available
+        double lat = 0, lng = 0;
+        if(tvAddressLine1.getTag() != null && tvAddressLine2.getTag() != null){
+            lat = (double) tvAddressLine1.getTag();
+            lng = (double) tvAddressLine2.getTag();
+        }
+        order.put("latitude", lat);
+        order.put("longitude", lng);
+
         // Add order to Firestore
         db.collection("orders").add(order)
                 .addOnSuccessListener(docRef -> {
@@ -166,6 +176,11 @@ public class CheckoutActivity extends AppCompatActivity {
         if(requestCode == 1001 && resultCode == RESULT_OK){
             double lat = data.getDoubleExtra("lat",0);
             double lng = data.getDoubleExtra("lng",0);
+
+            // Store coordinates in tags
+            tvAddressLine1.setTag(lat);
+            tvAddressLine2.setTag(lng);
+
 
             // Reverse geocode
             try {

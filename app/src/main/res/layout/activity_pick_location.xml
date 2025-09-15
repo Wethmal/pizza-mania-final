@@ -43,12 +43,11 @@
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_marginEnd="16dp"
-                android:background="@drawable/btn_circle"
                 android:clickable="true"
                 android:focusable="true"
                 android:padding="4dp"
                 android:src="@drawable/ic_arrow_back"
-                android:tint="#2C3E50" />
+                />
 
             <EditText
                 android:id="@+id/et_search_location"
@@ -67,12 +66,12 @@
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_marginStart="16dp"
-                android:background="@drawable/btn_search"
+                android:background="@drawable/search"
                 android:clickable="true"
                 android:focusable="true"
                 android:padding="6dp"
                 android:src="@drawable/search"
-                android:tint="#FFFFFF" />
+                android:tint="@color/cheese_yellow" />
 
         </LinearLayout>
 
@@ -103,7 +102,6 @@
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_gravity="center"
-                android:background="@drawable/btn_ripple"
                 android:clickable="true"
                 android:focusable="true"
                 android:src="@drawable/location"
@@ -125,7 +123,6 @@
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_gravity="center"
-                android:background="@drawable/btn_ripple"
                 android:clickable="true"
                 android:focusable="true"
                 android:src="@drawable/ic_plus"
@@ -146,7 +143,6 @@
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_gravity="center"
-                android:background="@drawable/btn_ripple"
                 android:clickable="true"
                 android:focusable="true"
                 android:src="@drawable/ic_minus"
@@ -161,7 +157,7 @@
         android:id="@+id/center_marker"
         android:layout_width="56dp"
         android:layout_height="56dp"
-        android:src="@drawable/pin_marker"
+        android:src="@drawable/nav"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -247,7 +243,6 @@
                     android:layout_width="16dp"
                     android:layout_height="16dp"
                     android:layout_marginEnd="8dp"
-                    android:src="@drawable/ic_coords"
                     android:tint="#7F8C8D" />
 
                 <TextView
@@ -286,8 +281,7 @@
             android:layout_marginEnd="12dp"
             app:cardBackgroundColor="#F8F9FA"
             app:cardCornerRadius="32dp"
-            app:cardElevation="8dp"
-            android:foreground="@drawable/btn_ripple_light">
+            app:cardElevation="8dp">
 
             <Button
                 android:id="@+id/btn_cancel"
@@ -296,7 +290,7 @@
                 android:background="@android:color/transparent"
                 android:text="Cancel"
                 android:textColor="#6C757D"
-                android:textSize="18sp"
+                android:textSize="12sp"
                 android:textStyle="bold"
                 android:textAllCaps="false"
                 style="?android:attr/borderlessButtonStyle" />
@@ -312,7 +306,7 @@
             app:cardBackgroundColor="@color/cheese_yellow"
             app:cardCornerRadius="32dp"
             app:cardElevation="12dp"
-            android:foreground="@drawable/btn_ripple_yellow">
+            >
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -321,10 +315,10 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginEnd="8dp"
-                    android:src="@drawable/ic_check"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="3dp"
+                    android:src="@drawable/check"
                     android:tint="#FFFFFF" />
 
                 <Button
@@ -334,7 +328,7 @@
                     android:background="@android:color/transparent"
                     android:text="Confirm Location"
                     android:textColor="#FFFFFF"
-                    android:textSize="18sp"
+                    android:textSize="12sp"
                     android:textStyle="bold"
                     android:textAllCaps="false"
                     style="?android:attr/borderlessButtonStyle"/>

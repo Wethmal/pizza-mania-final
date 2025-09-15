@@ -15,6 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Pizzar11">
         <activity
+            android:name=".TrackOrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DeliveryMapActivity"
+            android:exported="false" />
+        <activity
             android:name=".OrderHistoryActivity"
             android:exported="false" />
         <activity
