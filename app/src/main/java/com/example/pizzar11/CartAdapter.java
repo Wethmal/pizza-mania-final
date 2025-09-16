@@ -64,7 +64,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             }
         });
 
-// ➕ Increase quantity
+//  Increase quantity
         holder.btnIncrease.setOnClickListener(v -> {
             item.setQuantity(item.getQuantity() + 1);
             dbHelper.updateQuantity(item.getName(), item.getQuantity());
@@ -72,7 +72,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             if (onCartUpdated != null) onCartUpdated.run();
         });
 
-// ❌ Remove item
+//  Remove item
         holder.btnRemove.setOnClickListener(v -> {
             dbHelper.removeItem(item.getName());
             cartList.remove(position);
@@ -97,7 +97,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             tvName = itemView.findViewById(R.id.tvItemName);
             tvPrice = itemView.findViewById(R.id.tvItemPrice);
             tvQuantity = itemView.findViewById(R.id.tvItemQty);
-            ivItemImage = itemView.findViewById(R.id.iv_item_image); // your ImageView in item_cart.xml
+            ivItemImage = itemView.findViewById(R.id.iv_item_image);
             btnDecrease = itemView.findViewById(R.id.btn_decrease_quantity);
             btnIncrease = itemView.findViewById(R.id.btn_increase_quantity);
             btnRemove = itemView.findViewById(R.id.btn_remove_item);

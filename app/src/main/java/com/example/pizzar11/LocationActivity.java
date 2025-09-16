@@ -25,7 +25,7 @@ public class LocationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location);
 
-        // ✅ Get orderId safely
+        //  Get orderId safely
         orderId = getIntent().getStringExtra("orderId");
         if (orderId == null || orderId.trim().isEmpty()) {
             Toast.makeText(this, "Order not found!", Toast.LENGTH_SHORT).show();

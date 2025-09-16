@@ -59,14 +59,14 @@ public class SignupActivity extends AppCompatActivity {
             return;
         }
 
-        // 1️⃣ Create user in Firebase Authentication
+        // 1️ Create user in Firebase Authentication
         auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
                     if(task.isSuccessful()){
-                        // 2️⃣ Get UID
+                        // Get UID
                         String uid = auth.getCurrentUser().getUid();
 
-                        // 3️⃣ Prepare user data map
+                        //  Prepare user data map
                         Map<String, Object> user = new HashMap<>();
                         user.put("name", name);
                         user.put("email", email);
@@ -76,7 +76,7 @@ public class SignupActivity extends AppCompatActivity {
                         // profileImage optional, will add later
                         user.put("profileImage", null);
 
-                        // 4️⃣ Save to Firestore "user_data" collection
+                        // Save to Firestore "user_data" collection
                         db.collection("user_data").document(uid).set(user)
                                 .addOnSuccessListener(unused -> {
                                     Toast.makeText(SignupActivity.this, "Registered Successfully!", Toast.LENGTH_SHORT).show();

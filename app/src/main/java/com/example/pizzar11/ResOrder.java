@@ -1,44 +1,54 @@
 package com.example.pizzar11;
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ResOrder extends AppCompatActivity {
+public class ResOrder extends AppCompatActivity implements OrdersAdapter.OnOrderClickListener {
 
-    private ListView listViewOrders;
+    private RecyclerView recyclerViewOrders;
     private FirebaseFirestore db;
     private List<Order> orderList;
-    private ArrayAdapter<String> adapter;
-    private List<String> orderDisplayList;
+    private OrdersAdapter adapter;
+    private TextView orderCountText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_res_order);
 
-        listViewOrders = findViewById(R.id.listViewOrders);
+        ImageView ivBack = findViewById(R.id.ivBack);
+
+        ivBack.setOnClickListener(v -> finish());
+
+        // Initialize views
+        recyclerViewOrders = findViewById(R.id.recyclerViewOrders);
+        orderCountText = findViewById(R.id.orderCountText);
+
+        // Initialize Firebase
         db = FirebaseFirestore.getInstance();
         orderList = new ArrayList<>();
-        orderDisplayList = new ArrayList<>();
 
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, orderDisplayList);
-        listViewOrders.setAdapter(adapter);
+        // Setup RecyclerView
+        setupRecyclerView();
 
-        listViewOrders.setOnItemClickListener((parent, view, position, id) -> {
-            Order order = orderList.get(position);
-            Intent intent = new Intent(ResOrder.this, OrderDetailsActivity.class);
-            intent.putExtra("orderId", order.getId());
-            startActivity(intent);
-        });
-
+        // Load orders
         loadOrders();
+    }
+
+    private void setupRecyclerView() {
+        adapter = new OrdersAdapter(orderList, this);
+        recyclerViewOrders.setLayoutManager(new LinearLayoutManager(this));
+        recyclerViewOrders.setAdapter(adapter);
     }
 
     private void loadOrders() {
@@ -50,49 +60,56 @@ public class ResOrder extends AppCompatActivity {
                     }
 
                     orderList.clear();
-                    orderDisplayList.clear();
 
                     if (value != null) {
                         for (QueryDocumentSnapshot doc : value) {
                             Order order = new Order();
                             order.setId(doc.getId());
+
                             // Set customer name with emoji
                             String customerName = doc.getString("customerName");
-                            order.setCustomerName("👤 " + customerName); // person emoji
+                            order.setCustomerName("👤 " + customerName);
 
                             String status = doc.getString("status");
                             switch (status) {
                                 case "created":
-                                    order.setStatus("📝 " + status); // memo / new order
+                                    order.setStatus("📝 " + status);
                                     break;
                                 case "order confirmed":
-                                    order.setStatus("✅ " + status); // check mark
+                                    order.setStatus("✅ " + status);
                                     break;
                                 case "order preparing":
-                                    order.setStatus("🍳 " + status); // cooking / preparing
+                                    order.setStatus("🍳 " + status);
                                     break;
                                 case "order hand out to delivery":
-                                    order.setStatus("📦🚚 " + status); // package + delivery truck
+                                    order.setStatus("📦🚚 " + status);
                                     break;
                                 case "order Delivered":
-                                    order.setStatus("🏠📬 " + status); // home + mailbox / delivered
+                                    order.setStatus("🏠📬 " + status);
                                     break;
                                 default:
-                                    order.setStatus("ℹ️ " + status); // info / unknown
+                                    order.setStatus("ℹ️ " + status);
                                     break;
                             }
 
-                            // Skip date for now to avoid errors
-
                             orderList.add(order);
-
-                            String displayText = order.getCustomerName() + "\n" +
-                                    "Status: " + order.getStatus();
-                            orderDisplayList.add(displayText);
                         }
                     }
 
+                    // Update UI
                     adapter.notifyDataSetChanged();
+                    updateOrderCount();
                 });
+    }
+
+    private void updateOrderCount() {
+        orderCountText.setText("Total Orders: " + orderList.size());
+    }
+
+    @Override
+    public void onOrderClick(Order order) {
+        Intent intent = new Intent(ResOrder.this, OrderDetailsActivity.class);
+        intent.putExtra("orderId", order.getId());
+        startActivity(intent);
     }
 }

@@ -34,12 +34,12 @@ public class AdminLogin extends AppCompatActivity {
             String password = passwordInput.getText().toString().trim();
 
             if (email.equals(ADMIN_EMAIL) && password.equals(ADMIN_PASSWORD)) {
-                // ✅ Go to Admin Dashboard
+                // Go to Admin Dashboard
                 Intent intent = new Intent(AdminLogin.this, AdminDashbord.class);
                 startActivity(intent);
                 finish();
             } else {
-                // ❌ Show error message
+                // Show error message
                 Toast.makeText(AdminLogin.this,
                         "Please contact the Pizza Mania admin",
                         Toast.LENGTH_LONG).show();

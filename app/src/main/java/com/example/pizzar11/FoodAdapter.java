@@ -39,7 +39,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
 
         Glide.with(context)
                 .load(food.getImage())
-                .placeholder(R.drawable.logo) // optional placeholder
+                .placeholder(R.drawable.logo)
                 .into(holder.imgFood);
 
         holder.btnAddToCart.setOnClickListener(v -> {
@@ -55,7 +55,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
     }
 
     public static class FoodViewHolder extends RecyclerView.ViewHolder {
-        ImageView imgFood, btnAddToCart; // btnAddToCart is an ImageView
+        ImageView imgFood, btnAddToCart;
         TextView tvFoodName, tvFoodPrice;
 
         public FoodViewHolder(@NonNull View itemView) {
@@ -63,7 +63,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
             imgFood = itemView.findViewById(R.id.imgFood);
             tvFoodName = itemView.findViewById(R.id.tvFoodName);
             tvFoodPrice = itemView.findViewById(R.id.tvFoodPrice);
-            btnAddToCart = itemView.findViewById(R.id.btnAddToCart); // ImageView
+            btnAddToCart = itemView.findViewById(R.id.btnAddToCart);
         }
     }
 }

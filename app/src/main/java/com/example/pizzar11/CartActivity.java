@@ -21,7 +21,7 @@ public class CartActivity extends AppCompatActivity {
     TextView tvCartTotal, tvTax, tvDelivery, tvSubtotal;
 
     double TAX_RATE = 0.18; // 18%
-    double DELIVERY = 150;  // fixed delivery cost
+    double DELIVERY = 500;  // fixed delivery cost
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

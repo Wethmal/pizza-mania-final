@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">pizzar11</string>
+    <string name="app_name">Pizza Mania</string>
     <string name="send_message">Send message</string>
 
     <string-array name="order_status_array">

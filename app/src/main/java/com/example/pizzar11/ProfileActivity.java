@@ -164,7 +164,6 @@ public class ProfileActivity extends AppCompatActivity {
     private void showImageOptions(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Select Image")
-                .setMessage("App only supports images under 1MB")
                 .setPositiveButton("Gallery", (dialog, which) -> pickFromGallery())
                 .setNegativeButton("Camera", (dialog, which) -> pickFromCamera())
                 .show();

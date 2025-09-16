@@ -370,7 +370,7 @@
                         app:boxCornerRadiusTopStart="8dp"
                         app:boxStrokeWidth="0dp"
                         app:hintTextColor="#757575"
-                        app:prefixText="$"
+                        app:prefixText="Rs"
                         app:prefixTextColor="#757575">
 
                         <com.google.android.material.textfield.TextInputEditText

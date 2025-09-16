@@ -4,7 +4,7 @@ public class CartItem {
     String name;
     double price;
     int quantity;
-    String imageUrl; // add this
+    String imageUrl;
 
     public CartItem(String name, double price, int quantity, String imageUrl){
         this.name = name;

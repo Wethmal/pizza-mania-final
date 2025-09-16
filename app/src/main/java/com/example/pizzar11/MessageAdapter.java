@@ -15,7 +15,7 @@ import java.util.Locale;
 
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageViewHolder> {
 
-    private List<Message> messageList; // ✅ use Message, not UserMessage
+    private List<Message> messageList; //  use Message, not UserMessage
 
     public MessageAdapter(List<Message> messageList) {
         this.messageList = messageList;

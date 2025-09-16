@@ -42,7 +42,7 @@ public class CartDatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    // Add or update item
+
     // Add or update item
     public void addToCart(String name, double price, String imageUrl, int quantity) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -59,7 +59,7 @@ public class CartDatabaseHelper extends SQLiteOpenHelper {
             cv.put(COL_NAME, name);
             cv.put(COL_PRICE, price);
             cv.put(COL_QUANTITY, quantity);
-            cv.put(COL_IMAGE, imageUrl); // now comes from parameter
+            cv.put(COL_IMAGE, imageUrl);
             db.insert(TABLE_CART, null, cv);
         }
         cursor.close();
