@@ -83,12 +83,11 @@ public class PickLocationActivity extends AppCompatActivity implements OnMapRead
         // My Location Button
         btnMyLocation.setOnClickListener(v -> getMyLocation());
 
-        // Zoom In Button
+        // Zoom Buttons
         btnZoomIn.setOnClickListener(v -> {
             if (mMap != null) mMap.animateCamera(CameraUpdateFactory.zoomIn());
         });
 
-        // Zoom Out Button
         btnZoomOut.setOnClickListener(v -> {
             if (mMap != null) mMap.animateCamera(CameraUpdateFactory.zoomOut());
         });
@@ -191,15 +190,21 @@ public class PickLocationActivity extends AppCompatActivity implements OnMapRead
                 List<Address> addresses = geocoder.getFromLocationName(query, 5);
                 runOnUiThread(() -> {
                     loadingOverlay.setVisibility(View.GONE);
+
                     if (addresses != null && !addresses.isEmpty()) {
                         searchResultsCard.setVisibility(View.VISIBLE);
-                        // For simplicity, pick first result
-                        LatLng latLng = new LatLng(addresses.get(0).getLatitude(), addresses.get(0).getLongitude());
-                        selectedLocation = latLng;
-                        mMap.clear();
-                        mMap.addMarker(new MarkerOptions().position(latLng).title("Search Result"));
-                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f));
-                        updateLocationInfo(latLng);
+
+                        SearchResultsAdapter adapter = new SearchResultsAdapter(addresses, latLng -> {
+                            selectedLocation = latLng;
+                            mMap.clear();
+                            mMap.addMarker(new MarkerOptions().position(latLng).title("Selected Location"));
+                            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f));
+                            updateLocationInfo(latLng);
+                            searchResultsCard.setVisibility(View.GONE);
+                        });
+
+                        searchResultsRecycler.setAdapter(adapter);
+
                     } else {
                         Toast.makeText(this, "No results found", Toast.LENGTH_SHORT).show();
                     }

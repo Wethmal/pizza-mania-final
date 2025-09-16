@@ -53,7 +53,7 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
 
         holder.tvStatus.setText("Order status - " + order.getStatus());
 
-        // 🔥 Add click listener for "Live Tracking" button
+        //  Add click listener for "Live Tracking" button
         holder.tvLiveTracking.setOnClickListener(v -> {
             Intent intent = new Intent(v.getContext(), TrackOrderActivity.class);
             intent.putExtra("orderId", order.getId()); // pass order id

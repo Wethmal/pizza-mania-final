@@ -83,7 +83,7 @@ public class CartActivity extends AppCompatActivity {
         }
 
         double tax = cartTotal * 0.18;
-        double delivery = 150; // LKR fixed
+        double delivery = 500; // LKR fixed
         double subtotal = cartTotal + tax + delivery;
 
         tvCartTotal.setText(String.format("Rs %.2f", cartTotal));
