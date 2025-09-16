@@ -1,6 +1,7 @@
 package com.example.pizzar11;
 
 import android.os.Bundle;
+import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,6 +33,10 @@ public class MessagesActivity extends AppCompatActivity {
         messageList = new ArrayList<>();
         adapter = new MessageAdapter(messageList);
         recyclerMessages.setAdapter(adapter);
+
+        ImageView ivBack = findViewById(R.id.ivBack);
+
+        ivBack.setOnClickListener(v -> finish());
 
         db = FirebaseFirestore.getInstance();
 
