@@ -20,6 +20,7 @@ public class SignupActivity extends AppCompatActivity {
     Button registerButton, signinButton;
     FirebaseAuth auth;
     FirebaseFirestore db;
+    UserDatabaseHelper localDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,7 @@ public class SignupActivity extends AppCompatActivity {
         // Initialize Firebase
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
+        localDb = new UserDatabaseHelper(this);
 
         // Register button click
         registerButton.setOnClickListener(v -> registerUser());
@@ -79,13 +81,20 @@ public class SignupActivity extends AppCompatActivity {
                         // Save to Firestore "user_data" collection
                         db.collection("user_data").document(uid).set(user)
                                 .addOnSuccessListener(unused -> {
+                                    // Save also to SQLite
+                                    localDb.insertUser(uid, name, email, phone, "customer", null);
+
                                     Toast.makeText(SignupActivity.this, "Registered Successfully!", Toast.LENGTH_SHORT).show();
                                     // Go to MainActivity or ProfileActivity
                                     startActivity(new Intent(SignupActivity.this, MainActivity.class));
                                     finish();
+
+
                                 })
                                 .addOnFailureListener(e ->
                                         Toast.makeText(SignupActivity.this, "Firestore Error: "+e.getMessage(), Toast.LENGTH_SHORT).show());
+
+
                     } else {
                         Toast.makeText(SignupActivity.this, "Auth Error: "+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }

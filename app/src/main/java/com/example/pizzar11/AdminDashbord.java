@@ -2,6 +2,7 @@ package com.example.pizzar11;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -9,6 +10,7 @@ import androidx.cardview.widget.CardView;
 public class AdminDashbord extends AppCompatActivity {
 
     CardView cardAddFoods, cardViewOrders, cardCustomerMessages;
+    TextView tvusers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +21,7 @@ public class AdminDashbord extends AppCompatActivity {
         cardAddFoods = findViewById(R.id.cardAddFoods);
         cardViewOrders = findViewById(R.id.cardViewOrders);
         cardCustomerMessages = findViewById(R.id.cardCustomerMessages);
+        tvusers = findViewById(R.id.tvusers);
 
         // Go to Add Foods Page
         cardAddFoods.setOnClickListener(v -> {
@@ -35,6 +38,12 @@ public class AdminDashbord extends AppCompatActivity {
         // Go to Customer Messages Page
         cardCustomerMessages.setOnClickListener(v -> {
             Intent intent = new Intent(AdminDashbord.this, MessagesActivity.class);
+            startActivity(intent);
+        });
+
+        // Go to Customer Messages Page
+        tvusers.setOnClickListener(v -> {
+            Intent intent = new Intent(AdminDashbord.this, userwatch.class);
             startActivity(intent);
         });
     }

@@ -15,6 +15,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Pizzar11">
         <activity
+            android:name=".userwatch"
+            android:exported="false" />
+        <activity
+            android:name=".Userwatch"
+            android:exported="false"
+            android:theme="@style/Theme.Pizzar11" />
+        <activity
             android:name=".AdminLogin"
             android:exported="false" />
         <activity
@@ -33,7 +40,6 @@
             android:name=".OrderHistoryActivity"
             android:exported="false" />
         <activity android:name=".MessagesActivity" />
-
         <activity
             android:name=".ResOrder"
             android:exported="false" />
