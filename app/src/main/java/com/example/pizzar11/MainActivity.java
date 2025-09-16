@@ -116,7 +116,6 @@ public class MainActivity extends AppCompatActivity {
 // List of banners
         List<Integer> bannerList = new ArrayList<>();
         bannerList.add(R.drawable.banner5);
-        bannerList.add(R.drawable.banner0);
         bannerList.add(R.drawable.banner);
         bannerList.add(R.drawable.banner2);
         bannerList.add(R.drawable.banner3);

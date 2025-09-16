@@ -46,19 +46,19 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        Button btnLoadAdmin = findViewById(R.id.loadadmin);
-
-        btnLoadAdmin.setOnClickListener(v -> {
-            Intent intent = new Intent(ProfileActivity.this, ResOrder.class);
-            startActivity(intent);
-        });
-
-        Button btndilever = findViewById(R.id.dilver);
-
-        btndilever.setOnClickListener(v -> {
-            Intent intent = new Intent(ProfileActivity.this, AdminDashbord.class);
-            startActivity(intent);
-        });
+//        Button btnLoadAdmin = findViewById(R.id.loadadmin);
+//
+//        btnLoadAdmin.setOnClickListener(v -> {
+//            Intent intent = new Intent(ProfileActivity.this, ResOrder.class);
+//            startActivity(intent);
+//        });
+//
+//        Button btndilever = findViewById(R.id.dilver);
+//
+//        btndilever.setOnClickListener(v -> {
+//            Intent intent = new Intent(ProfileActivity.this, AdminDashbord.class);
+//            startActivity(intent);
+//        });
 
 
 

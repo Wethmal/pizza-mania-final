@@ -224,79 +224,79 @@
 
             </androidx.cardview.widget.CardView>
 
-            <!-- Admin Actions Card -->
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="6dp"
-                app:cardBackgroundColor="@android:color/white">
+<!--            &lt;!&ndash; Admin Actions Card &ndash;&gt;-->
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:layout_marginEnd="16dp"-->
+<!--                android:layout_marginBottom="16dp"-->
+<!--                app:cardCornerRadius="20dp"-->
+<!--                app:cardElevation="6dp"-->
+<!--                app:cardBackgroundColor="@android:color/white">-->
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="20dp">
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:padding="20dp">-->
 
-                    <!-- Section Title -->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Admin"
-                        android:textColor="#2C3E50"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_marginBottom="20dp"
-                        android:drawableStart="@drawable/person"
-                        android:drawablePadding="12dp"
-                        android:gravity="center_vertical" />
+<!--                    &lt;!&ndash; Section Title &ndash;&gt;-->
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Admin"-->
+<!--                        android:textColor="#2C3E50"-->
+<!--                        android:textSize="18sp"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:layout_marginBottom="20dp"-->
+<!--                        android:drawableStart="@drawable/person"-->
+<!--                        android:drawablePadding="12dp"-->
+<!--                        android:gravity="center_vertical" />-->
 
-                    <!-- Admin Actions Row -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center"
-                        android:weightSum="2">
+<!--                    &lt;!&ndash; Admin Actions Row &ndash;&gt;-->
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:orientation="horizontal"-->
+<!--                        android:gravity="center"-->
+<!--                        android:weightSum="2">-->
 
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/loadadmin"
-                            android:layout_width="0dp"
-                            android:layout_height="56dp"
-                            android:layout_weight="1"
-                            android:layout_marginEnd="8dp"
-                            android:backgroundTint="#3498DB"
-                            android:text="Load Admin"
-                            android:textColor="@android:color/white"
-                            android:textSize="14sp"
-                            android:textAllCaps="false"
-                            app:cornerRadius="16dp"
-                            app:iconGravity="textStart"
-                            app:rippleColor="@color/ripple_color" />
+<!--                        <com.google.android.material.button.MaterialButton-->
+<!--                            android:id="@+id/loadadmin"-->
+<!--                            android:layout_width="0dp"-->
+<!--                            android:layout_height="56dp"-->
+<!--                            android:layout_weight="1"-->
+<!--                            android:layout_marginEnd="8dp"-->
+<!--                            android:backgroundTint="#3498DB"-->
+<!--                            android:text="Load Admin"-->
+<!--                            android:textColor="@android:color/white"-->
+<!--                            android:textSize="14sp"-->
+<!--                            android:textAllCaps="false"-->
+<!--                            app:cornerRadius="16dp"-->
+<!--                            app:iconGravity="textStart"-->
+<!--                            app:rippleColor="@color/ripple_color" />-->
 
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/dilver"
-                            android:layout_width="0dp"
-                            android:layout_height="56dp"
-                            android:layout_weight="1"
-                            android:layout_marginStart="8dp"
-                            android:backgroundTint="#27AE60"
-                            android:text="Delivery"
-                            android:textColor="@android:color/white"
-                            android:textSize="14sp"
-                            android:textAllCaps="false"
-                            app:cornerRadius="16dp"
-                            app:iconGravity="textStart"
-                            app:rippleColor="@color/ripple_color" />
+<!--                        <com.google.android.material.button.MaterialButton-->
+<!--                            android:id="@+id/dilver"-->
+<!--                            android:layout_width="0dp"-->
+<!--                            android:layout_height="56dp"-->
+<!--                            android:layout_weight="1"-->
+<!--                            android:layout_marginStart="8dp"-->
+<!--                            android:backgroundTint="#27AE60"-->
+<!--                            android:text="Delivery"-->
+<!--                            android:textColor="@android:color/white"-->
+<!--                            android:textSize="14sp"-->
+<!--                            android:textAllCaps="false"-->
+<!--                            app:cornerRadius="16dp"-->
+<!--                            app:iconGravity="textStart"-->
+<!--                            app:rippleColor="@color/ripple_color" />-->
 
-                    </LinearLayout>
+<!--                    </LinearLayout>-->
 
-                </LinearLayout>
+<!--                </LinearLayout>-->
 
-            </androidx.cardview.widget.CardView>
+<!--            </androidx.cardview.widget.CardView>-->
 
             <!-- Contact Us Section with Enhanced Design -->
             <androidx.cardview.widget.CardView
