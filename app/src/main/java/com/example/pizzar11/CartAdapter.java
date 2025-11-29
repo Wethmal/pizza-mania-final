@@ -53,7 +53,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
         CartDatabaseHelper db = new CartDatabaseHelper(context);
 
-        // ➖ Decrease quantity
+        //  Decrease quantity
         holder.btnDecrease.setOnClickListener(v -> {
             int qty = item.getQuantity();
             if (qty > 1) {

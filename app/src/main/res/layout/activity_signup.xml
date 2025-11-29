@@ -53,7 +53,7 @@
             <TextView
                 android:id="@+id/signupTitle"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="start"
                 android:layout_marginTop="12dp"
                 android:padding="12dp"
@@ -74,7 +74,7 @@
                 android:drawablePadding="10dp"
                 android:hint="Full Name"
                 android:inputType="textPersonName"
-                android:padding="12dp" />
+                android:padding="15dp" />
 
             <!-- Email Field -->
             <EditText

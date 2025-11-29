@@ -84,7 +84,7 @@ public class SignupActivity extends AppCompatActivity {
                                     // Save also to SQLite
                                     localDb.insertUser(uid, name, email, phone, "customer", null);
 
-                                    Toast.makeText(SignupActivity.this, "Registered Successfully!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(SignupActivity.this, "Registered Successfully deer yuise !", Toast.LENGTH_SHORT).show();
                                     // Go to MainActivity or ProfileActivity
                                     startActivity(new Intent(SignupActivity.this, MainActivity.class));
                                     finish();
