@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,7 +36,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import androidx.viewpager2.widget.ViewPager2;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -143,6 +146,28 @@ public class MainActivity extends AppCompatActivity {
         };
         handler.postDelayed(runnable, 3000);
     }
+
+    private void testFirebaseConnection() {
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        // Create a test object to upload
+        Map<String, Object> testData = new HashMap<>();
+        testData.put("status", "connected");
+        testData.put("time", System.currentTimeMillis());
+
+        db.collection("firebase_test")
+                .add(testData)
+                .addOnSuccessListener(documentReference -> {
+                    Log.d("FIREBASE_TEST", "Firebase Connected!");
+                    Toast.makeText(MainActivity.this, "Firebase Connected ✔", Toast.LENGTH_SHORT).show();
+                })
+                .addOnFailureListener(e -> {
+                    Log.e("FIREBASE_TEST", "Firebase Connection FAILED → " + e.getMessage());
+                    Toast.makeText(MainActivity.this, "Firebase NOT Connected ❌", Toast.LENGTH_LONG).show();
+                });
+    }
+
 
     private void setupSearch(){
         editTextSearch.addTextChangedListener(new TextWatcher() {
