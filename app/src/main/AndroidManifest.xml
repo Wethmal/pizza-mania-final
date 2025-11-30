@@ -17,12 +17,10 @@
         <activity
             android:name=".userwatch"
             android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".Userwatch"-->
-<!--            android:exported="false"-->
-<!--            android:theme="@style/Theme.Pizzar11" />-->
-        <activity android:name=".FirebaseTestActivity" />
-
+        <activity
+            android:name=".Userwatch"
+            android:exported="false"
+            android:theme="@style/Theme.Pizzar11" />
         <activity
             android:name=".AdminLogin"
             android:exported="false" />
